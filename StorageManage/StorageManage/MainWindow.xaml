@@ -22,6 +22,8 @@
             <MenuItem  Header="Устройства">
                 <MenuItem Header="Устройства" Click="MenuItem_Click" Name="DevicesMenu" />
                 <MenuItem Header="Типы устройств" Click="MenuItem_Click" Name="TypesOfDevicesMenu" />
+                <MenuItem Header="Неисправности" Click="MenuItem_Click" Name="MalfunctionsMenu" />
+                <MenuItem Header="Причины неисправностей" Click="MenuItem_Click" Name="CausesOfMalfunctionsMenu" />
             </MenuItem>
             <MenuItem Header="Заказы" />
             <MenuItem Header="Статистика"/>
@@ -463,7 +465,145 @@
 
             <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDetilsForDevice" Click="Button_Click"/>
         </Grid>
+<!--грид причин неисправности-->
+        <Grid Name="CausesOfMalfunctionsGrid" Visibility="Collapsed" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="CausesOfMalfunctionsDataGrid" Grid.RowSpan="2"  AutoGenerateColumns="False" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="id" Binding="{Binding idcauses}" Width="1*"/>
+                    <DataGridTextColumn Header="Причина неисправности" Binding="{Binding title}" Width="4*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Добавить/Изменить" Name="AddChangeCauseOfMalfunction" Grid.Column="0" Click="Button_Click"/>
+                <Button Content="Удалить" Name="DelCauseOfMalfunction" Grid.Column="1" Click="Button_Click"/>
+            </Grid>
+        </Grid>
+        <!--грид неисправностей( только админ )-->
+        <Grid Name="MalfunctionsGrid" Visibility="Collapsed" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="MalfunctionsDataGrid" Grid.RowSpan="2" IsReadOnly="True"  AutoGenerateColumns="False" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="id" Binding="{Binding idmalfunctions}" Width="3*"/>
+                    <DataGridTextColumn Header="Неисправность" Binding="{Binding titlemalfunction}" Width="3*"/>
+                    <DataGridTextColumn Header="Тип устройства" Binding="{Binding titletype}" Width="3*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Добавить" Name="GoToAddMalfunction" Grid.Column="0" Click="Button_Click"/>
+                <Button Content="Изменить" Name="GoToChangeMalfunction"  Grid.Column="1" Click="Button_Click"/>
+                <Button Content="Удалить" Name="DelMalfunction" Grid.Column="2" Click="Button_Click"/>
+                <Button Content="Детали для починки" Name="GoToDetailsOfThisMalfunction" Grid.Column="3" Click="Button_Click"/>
+                <Button Content="Причины поломки" Name="GoToCausesOfThisMalfunction" Grid.Column="4" Click="Button_Click"/>
+            </Grid>
+        </Grid>
 
+        <!--добавление неисправности-->
+        <Grid Name="AddMalfunctionGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Content="Добавление неисправности" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
+            <Label FontSize="25" Content="Тип устройства" Grid.Row="2" Grid.Column="0" />
+
+            <TextBox Grid.Row="1" Grid.Column="1"  Name="AddMalfunctionTitle"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Name="AddMalfunctionTypeOfDevice"/>
+
+            <Button FontSize="25" Content="Добавить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AddMalfunction" Click="Button_Click"/>
+        </Grid>
+
+
+        <!--изменение неисправности-->
+        <Grid Name="ChangeMalfunctionGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Content="Изменение неисправности" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
+            <Label FontSize="25" Content="Тип устройства" Grid.Row="2" Grid.Column="0" />
+
+            <TextBox Grid.Row="1" Grid.Column="1"  Name="ChangeMalfunctionTitle"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" Name="ChangeMalfunctionTypeOfDevice"/>
+
+            <Button FontSize="25" Content="Изменить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeMalfunction" Click="Button_Click"/>
+        </Grid>
+        
+         <!--работа с запчастями для неисправности-->
+        <Grid Name="DetailsForMalfunctionGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Name="DetailsForMalfunctionLabel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Детали" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" />
+            <ScrollViewer  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Name="DetailsListForMalfunctionGrid" />
+            </ScrollViewer>
+
+            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDetilsForMalfunction" Click="Button_Click"/>
+        </Grid>
+
+
+        <!--работа с причинами неисправностей для неисправности-->
+        <Grid Name="CausesForMalfunctionGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Name="CausesForMalfunctionLabel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Причины" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" />
+            <ScrollViewer  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Name="CausesListForMalfunctionGrid" />
+            </ScrollViewer>
+
+            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppCausesForMalfunction" Click="Button_Click"/>
+        </Grid>
     </Grid>
     
 </Window>

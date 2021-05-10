@@ -40,7 +40,6 @@ namespace StorageManage
 
         }
 
-
         public static void DetailsDataGridUpdate(MainWindow window, string sql)
         {
             DataTable table = new DataTable();
@@ -143,6 +142,38 @@ namespace StorageManage
             }
             window.ex.closeCon();
             window.DevicesDataGrid.ItemsSource = table.DefaultView;
+
+        }
+        public static void CausesOfMalfunctionsDataGridUpdate(MainWindow window)
+        {
+            window.CausesOfMalfunctionsDataGrid.ItemsSource = window.ex.retuernTable("SELECT * from causesofmalfunction").DefaultView;
+        }
+
+        public static void MalfunctionsDataGridUpdate(MainWindow window)
+        {
+            DataTable table = new DataTable();
+            object[] sqlMass = new object[3];
+            table.Columns.Add("idmalfunctions", System.Type.GetType("System.Int32"));
+            table.Columns.Add("titlemalfunction", System.Type.GetType("System.String"));
+            table.Columns.Add("titletype", System.Type.GetType("System.String"));
+            MySqlDataReader reader = window.ex.returnResult("select malfunctions.idmalfunctions,malfunctions.title,typeofdevices.title from malfunctions inner join typeofdevices using(idtypes)");
+            if (reader.HasRows)
+            {
+
+                while (reader.Read())
+                {
+                    sqlMass[0] = reader.GetInt32(0);
+                    sqlMass[1] = reader.GetString(1);
+                    sqlMass[2] = reader.GetString(2);
+                    DataRow row;
+                    row = table.NewRow();
+                    row.ItemArray = sqlMass;
+                    table.Rows.Add(row);
+                }
+
+            }
+            window.ex.closeCon();
+            window.MalfunctionsDataGrid.ItemsSource = table.DefaultView;
 
         }
     }

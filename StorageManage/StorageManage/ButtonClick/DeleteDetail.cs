@@ -30,6 +30,9 @@ namespace StorageManage.ButtonClick
             reader = window.ex.returnResult("select recordid from devices_details where iddetails=" + arr[0]);
             if (reader.HasRows) { window.ex.closeCon(); MessageBox.Show("Невозможно удалить запись"); return; }
             window.ex.closeCon();
+            reader = window.ex.returnResult("select recordid from malfunctions_details where iddetails=" + arr[0]);
+            if (reader.HasRows) { window.ex.closeCon(); MessageBox.Show("Невозможно удалить запись"); return; }
+            window.ex.closeCon();
             window.ex.ExecuteWithoutRedaer("delete from details where iddetails=" + arr[0]);
 
             DataGridUpdater.DetailsDataGridUpdate(window,window.filter.sql);

@@ -41,8 +41,11 @@ namespace StorageManage
         //для изменения устройства
         public int deviceIdForChange;
         public string unChangeDeviceTitle;
-        //максв чекбоксов для добавления деталей к устройтсвам
+        //максв чекбоксов для добавления деталей
         public CheckBox[] detailsCheckBoxMas;
+        //для изменения неисправности
+        public int malfunctionIdForChange;
+        public string unChangeMalfunctionTitle;
         public MainWindow()
         {
             InitializeComponent();
@@ -111,14 +114,40 @@ namespace StorageManage
                 case "GoToAddDevice": { actionReactButton = new GoToAddDevice(this); break; }
                 //добавление устройства
                 case "AddDevice": { actionReactButton = new AddDevice(this); break; }
+                //удаление устройства
+                case "DelDevice": { actionReactButton = new DeleteDevice(this); break; }
                 //переход к изменению устройства
                 case "GoToChangeDevice": { actionReactButton = new GoToChangeDevice(this); break; }
                 //изменение устройства
                 case "ChangeDevice": { actionReactButton = new ChangeDevice(this); break; }
                 //переход к добавлению деталей для устройства
                 case "GoToDetailsOfThisDevice": { actionReactButton = new GoToDetailsForDevice(this); break; }
-                //переход к добавлению деталей для устройства
+                //добавление деталей для устройства
                 case "AppDetilsForDevice": { actionReactButton = new AppDetilsForDevice(this); break; }
+                //Добавление изменение типов неисправностей
+                case "AddChangeCauseOfMalfunction": { actionReactButton = new AddChangeCauseOfMalfunction(this); break; }
+                //Удаление типа неисправности
+                case "DelCauseOfMalfunction": { actionReactButton = new DeleteCauseOfMalfunction(this); break; }
+                //переход к добавлению неиспраности
+                case "GoToAddMalfunction": { actionReactButton = new GoToAddMalfunction(this); break; }
+                //добавление неисправности
+                case "AddMalfunction": { actionReactButton = new AddMalfunction(this); break; }
+                //удаление неисправности
+                case "DelMalfunction": { actionReactButton = new DeleteMalfunction(this); break; }
+                //переход к изменению неисправности 
+                case "GoToChangeMalfunction": { actionReactButton = new GoToChangeMalfunction(this); break; }
+                //изменение неисправности
+                case "ChangeMalfunction": { actionReactButton = new ChangeMalfunction(this); break; }
+
+                //переход к добавлению деталей для устранения неисправности
+                case "GoToDetailsOfThisMalfunction": { actionReactButton = new GoToDetailsOfThisMalfunction(this); break; }
+                //добавление деталей для устранения неисправности
+                case "AppDetilsForMalfunction": { actionReactButton = new AppDetilsForMalfunction(this); break; }
+
+                //переход к добавлению причин неисправности
+                case "GoToCausesOfThisMalfunction": { actionReactButton = new GoToCausesOfThisMalfunction(this); break; }
+                //добавление причин для неисправности
+                case "AppCausesForMalfunction": { actionReactButton = new AppCausesForMalfunction(this); break; }
             }
             actionReactButton.ButtonClick();
         }
@@ -130,9 +159,9 @@ namespace StorageManage
             {
                 //выйти, меню админа
                 case "LeaveAdm": { actionReactMenuItem = new Leave(this); break; }
-                    //выйти меню менеджера
+                //выйти меню менеджера
                 case "LeaveMan": { actionReactMenuItem = new Leave(this); break; }
-                    //переход к пользователям
+                //переход к пользователям
                 case "UsersMenu": { actionReactMenuItem = new GoToUsers(this); break; }
                 //детали, меню админа
                 case "AdminDetailsMenu": { actionReactMenuItem = new GoToAdminDetails(this); break; }
@@ -146,6 +175,10 @@ namespace StorageManage
                 case "TypesOfDevicesMenu": { actionReactMenuItem = new GoToTypesOfDevices(this); break; }
                     //Устройства
                 case "DevicesMenu": { actionReactMenuItem = new GoToDevices(this); break; }
+                //причины неисправностей
+                case "CausesOfMalfunctionsMenu": { actionReactMenuItem = new GoToCausesOfMalfunctions(this); break; }
+                    //неисправности
+                case "MalfunctionsMenu": { actionReactMenuItem = new GoToMalfunctions(this); break; }
 
             }
             actionReactMenuItem.MenuClick();

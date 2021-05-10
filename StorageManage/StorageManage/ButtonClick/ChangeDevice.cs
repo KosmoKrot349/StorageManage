@@ -19,7 +19,6 @@ namespace StorageManage.ButtonClick
 
         public void ButtonClick()
         {
-            MessageBox.Show("123");
             if (String.IsNullOrEmpty(window.ChangeDeviceTitle.Text)) { MessageBox.Show("Поля не заполнены"); return; }
             int idtype = 1;
             MySqlDataReader reader = window.ex.returnResult("select iddevices from devices where title='" + window.ChangeDeviceTitle.Text + "'");
