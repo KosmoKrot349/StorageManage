@@ -25,7 +25,10 @@
                 <MenuItem Header="Неисправности" Click="MenuItem_Click" Name="MalfunctionsMenu" />
                 <MenuItem Header="Причины неисправностей" Click="MenuItem_Click" Name="CausesOfMalfunctionsMenu" />
             </MenuItem>
-            <MenuItem Header="Заказы" />
+            <MenuItem Header="Заказы на починку">
+                <MenuItem Header="Клиенты" Name="ClientsMenu" Click="MenuItem_Click" />
+                <MenuItem Header="Заказы" Name="RepairOrdersMenu" Click="MenuItem_Click" />
+            </MenuItem>
             <MenuItem Header="Статистика"/>
             <MenuItem Name="LeaveAdm" HorizontalAlignment="Right" Header="Выход" Click="MenuItem_Click"/>
         </Menu>
@@ -35,7 +38,10 @@
                 <MenuItem Header="Запчасти" Name="ManagerDetailsMenu"  Click="MenuItem_Click"/>
                 <MenuItem Header="Заказы" Name="ManagerOrdersMenu"  Click="MenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="Заказы" />
+            <MenuItem Header="Заказы на починку">
+                <MenuItem Header="Клиенты" Name="ClientsManagerMenu" Click="MenuItem_Click" />
+                <MenuItem Header="Заказы" Name="RepairOrdersManagerMenu" Click="MenuItem_Click" />
+            </MenuItem>
             <MenuItem Header="Статистика"/>
             <MenuItem Name="LeaveMan" HorizontalAlignment="Right" Header="Выход" Click="MenuItem_Click"/>
         </Menu>
@@ -362,8 +368,7 @@
                     <DataGridTextColumn Header="Тип устройства" Binding="{Binding title}" Width="4*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <!--операции в заказах для админа-->
-            <Grid Grid.Row="2" Name="TypesOfDevicesOperationForAdminGrid">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -386,8 +391,7 @@
                     <DataGridTextColumn Header="Тип устройства" Binding="{Binding titletype}" Width="3*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <!--операции в заказах для админа-->
-            <Grid Grid.Row="2" Name="DevicesOperationForAdminGrid">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -603,6 +607,155 @@
             </ScrollViewer>
 
             <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppCausesForMalfunction" Click="Button_Click"/>
+        </Grid>
+
+        <!--грид клиентов-->
+        <Grid Name="ClientsGrid" Visibility="Collapsed" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="ClientsDataGrid" Grid.RowSpan="2"  AutoGenerateColumns="False" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="id" Binding="{Binding idclients}" Width="1*"/>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding name}" Width="4*" />
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="4*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Добавить/Изменить" Name="AddChangeClients" Grid.Column="0" Click="Button_Click"/>
+                <Button Content="Удалить" Name="DelClient" Grid.Column="1" Click="Button_Click"/>
+                <Button Content="Добавить устройства" Name="GoToDevicesOfThisClient" Grid.Column="2" Click="Button_Click"/>
+            </Grid>
+        </Grid>
+
+        <!--работа с устройствами для клиентов-->
+        <Grid Name="DevicesForClientsGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Name="DevicesForClientsLabel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Устройства" Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" />
+            <ScrollViewer  Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <Grid Name="DevicesListForClientsGrid" />
+            </ScrollViewer>
+
+            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDevicesForClients" Click="Button_Click"/>
+        </Grid>
+
+<!--грид заказов на починку-->
+        <Grid Name="RepairOrdersGrid" Visibility="Collapsed" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <DataGrid Name="RepairOrdersDataGrid" Grid.RowSpan="2" IsReadOnly="True"  AutoGenerateColumns="False" Grid.Row="0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="id" Binding="{Binding idrepairorders}" Width="6*"/>
+                    <DataGridTextColumn Header="Клиент" Binding="{Binding clientname}" Width="6*"/>
+                    <DataGridTextColumn Header="Устройство" Binding="{Binding devicetitle}" Width="6*" />
+                    <DataGridTextColumn Header="Дата принятия" Binding="{Binding datestart}" Width="6*" />
+                    <DataGridTextColumn Header="Дата окончания" Binding="{Binding dateend}" Width="6*" />
+                    <DataGridTextColumn Header="Состояние" Binding="{Binding state}" Width="6*" />
+                    <DataGridTextColumn Header="Описание" Binding="{Binding desc}" Width="6*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Добавить" Name="GoToAddRepairOrder" Grid.Column="0" Click="Button_Click"/>
+                <Button Content="Изменить" Name="GoToChangeRepairOrder"  Grid.Column="1" Click="Button_Click"/>
+                <Button Content="Удалить" Name="DelRepairOrder" Grid.Column="2" Click="Button_Click"/>
+                <Button Content="Неисправности" Name="GoToMalFunctionsOfThisRepairOrder" Grid.Column="3" Click="Button_Click"/>
+            </Grid>
+        </Grid>
+
+        <!--добавление заказа на ремонт-->
+        <Grid Name="AddRepairOrderGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Content="Добавление заказа" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Клиент" Grid.Row="1" Grid.Column="0" />
+            <Label FontSize="25" Content="Устройство" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Дата принятия" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Дата выполнения" Grid.Row="4" Grid.Column="0" />
+            <Label FontSize="25" Content="Описание" Grid.Row="5" Grid.Column="0" />
+
+            <ComboBox Grid.Row="1" Grid.Column="1" Name="AddClientOfRepairOrder" SelectionChanged="ComboBox_SelectionChanged"  />
+            <ComboBox Grid.Row="2" Grid.Column="1" Name="AddDeviceOfRepairOrder"/>
+            <DatePicker Grid.Row="3" Grid.Column="1" Name="AddDateStartOfRepairOrder" />
+            <DatePicker Grid.Row="4" Grid.Column="1" Name="AddDateEndOfRepairOrder" />
+            <TextBox Grid.Row="5" Grid.Column="1" Name="AddDescOfRepairOrder" />
+
+            <Button FontSize="25" Content="Добавить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="AddRepairOrder" Click="Button_Click"/>
+        </Grid>
+        <!--Изменение заказа на ремонт-->
+        <Grid Name="ChangeRepairOrderGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Content="Изменение заказа" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="25" Content="Клиент" Grid.Row="1" Grid.Column="0" />
+            <Label FontSize="25" Content="Устройство" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Дата принятия" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Дата выполнения" Grid.Row="4" Grid.Column="0" />
+            <Label FontSize="25" Content="Описание" Grid.Row="5" Grid.Column="0" />
+            <Label FontSize="25" Content="Состояние" Grid.Row="6" Grid.Column="0" />
+
+            <Label Grid.Row="1" Grid.Column="1" Name="ChangeClientOfRepairOrder"   />
+            <Label Grid.Row="2" Grid.Column="1" Name="ChangeDeviceOfRepairOrder"/>
+            <DatePicker Grid.Row="3" Grid.Column="1" Name="ChangeDateStartOfRepairOrder" />
+            <DatePicker Grid.Row="4" Grid.Column="1" Name="ChangeDateEndOfRepairOrder" />
+            <TextBox Grid.Row="5" Grid.Column="1" Name="ChangeDescOfRepairOrder" />
+            <ComboBox Grid.Row="6" Grid.Column="1" Name="ChangeStatOfRepairOrder">
+                <ComboBoxItem Content="Принят" IsSelected="True" />
+                <ComboBoxItem Content="Выполняется" />
+                <ComboBoxItem Content="Не хватает детали" />
+                <ComboBoxItem Content="Детали в заказе" />
+                <ComboBoxItem Content="Выполнен" />
+                <ComboBoxItem Content="Отменен" />
+            </ComboBox>
+
+            <Button FontSize="25" Content="Изменить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeRepairOrder" Click="Button_Click"/>
         </Grid>
     </Grid>
     

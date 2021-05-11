@@ -99,30 +99,39 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ButtonClick\AddChangeCauseOfMalfunction.cs" />
+    <Compile Include="ButtonClick\AddChangeClients.cs" />
     <Compile Include="ButtonClick\AddChangeTypeOfDevice.cs" />
     <Compile Include="ButtonClick\AddDetail.cs" />
     <Compile Include="ButtonClick\AddDevice.cs" />
     <Compile Include="ButtonClick\AddMalfunction.cs" />
     <Compile Include="ButtonClick\AddOrder.cs" />
+    <Compile Include="ButtonClick\AddRepairOrder.cs" />
     <Compile Include="ButtonClick\AppCausesForMalfunction.cs" />
     <Compile Include="ButtonClick\AppDetailsFilterAdmin.cs" />
     <Compile Include="ButtonClick\AppDetilsForDevice.cs" />
     <Compile Include="ButtonClick\AppDetilsForMalfunction.cs" />
+    <Compile Include="ButtonClick\AppDevicesForClients.cs" />
     <Compile Include="ButtonClick\Authorization.cs" />
     <Compile Include="ButtonClick\ChangeDetail.cs" />
     <Compile Include="ButtonClick\ChangeDevice.cs" />
     <Compile Include="ButtonClick\ChangeMalfunction.cs" />
     <Compile Include="ButtonClick\ChangeOrder.cs" />
+    <Compile Include="ButtonClick\ChangeRepairOrder.cs" />
     <Compile Include="ButtonClick\ChangeUser.cs" />
     <Compile Include="ButtonClick\CompleetOrder.cs" />
     <Compile Include="ButtonClick\ConfirmUnconfirmUser.cs" />
     <Compile Include="ButtonClick\DeleteCauseOfMalfunction.cs" />
+    <Compile Include="ButtonClick\DeleteClient.cs" />
     <Compile Include="ButtonClick\DeleteDetail.cs" />
     <Compile Include="ButtonClick\DeleteDevice.cs" />
     <Compile Include="ButtonClick\DeleteMalfunction.cs" />
     <Compile Include="ButtonClick\DeleteOrder.cs" />
+    <Compile Include="ButtonClick\DeleteRepairOrder.cs" />
     <Compile Include="ButtonClick\DeleteTypeOfDevice.cs" />
     <Compile Include="ButtonClick\DeleteUser.cs" />
+    <Compile Include="ButtonClick\GoToAddRepairOrder.cs" />
+    <Compile Include="ButtonClick\GoToChangeRepairOrder.cs" />
+    <Compile Include="ButtonClick\GoToDevicesOfThisClient.cs" />
     <Compile Include="ButtonClick\GoToAddMalfunction.cs" />
     <Compile Include="ButtonClick\GoToCausesOfThisMalfunction.cs" />
     <Compile Include="ButtonClick\GoToChangeMalfunction.cs" />
@@ -144,13 +153,17 @@
     <Compile Include="HideAllGrids.cs" />
     <Compile Include="MenuClick\GoToAdminDetails.cs" />
     <Compile Include="MenuClick\GoToCausesOfMalfunctions.cs" />
+    <Compile Include="MenuClick\GoToClients.cs" />
     <Compile Include="MenuClick\GoToDevices.cs" />
     <Compile Include="MenuClick\GoToMalfunctions.cs" />
     <Compile Include="MenuClick\GoToOrders.cs" />
+    <Compile Include="MenuClick\GoToRepairOrders.cs" />
     <Compile Include="MenuClick\GoToTypesOfDevices.cs" />
     <Compile Include="MenuClick\GoToUsers.cs" />
     <Compile Include="MenuClick\IMenuClick.cs" />
     <Compile Include="MenuClick\Leave.cs" />
+    <Compile Include="SelectionChanged\ISelectionChanged.cs" />
+    <Compile Include="SelectionChanged\SelectClientFromAddRepairOrder.cs" />
     <Compile Include="SqlExecute.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -192,5 +205,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

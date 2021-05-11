@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using StorageManage.ButtonClick;
 using StorageManage.MenuClick;
+using StorageManage.SelectionChanged;
 
 namespace StorageManage
 {
@@ -27,6 +28,7 @@ namespace StorageManage
         public SqlExecute ex;
         IButtonClick actionReactButton;
         IMenuClick actionReactMenuItem;
+        ISelectionChanged actionReactComboBox;
         public HideAllGrids hd;
         public Filter filter = new Filter();
         //для изменения пользователей
@@ -46,6 +48,10 @@ namespace StorageManage
         //для изменения неисправности
         public int malfunctionIdForChange;
         public string unChangeMalfunctionTitle;
+        // id клиента
+        public int clientID;
+        //для изменения заказа
+        public int repairOrderForChange;
         public MainWindow()
         {
             InitializeComponent();
@@ -148,6 +154,25 @@ namespace StorageManage
                 case "GoToCausesOfThisMalfunction": { actionReactButton = new GoToCausesOfThisMalfunction(this); break; }
                 //добавление причин для неисправности
                 case "AppCausesForMalfunction": { actionReactButton = new AppCausesForMalfunction(this); break; }
+                //добавление изменение клиента
+                case "AddChangeClients": { actionReactButton = new AddChangeClients(this); break; }
+                //добавление изменение клиента
+                case "DelClient": { actionReactButton = new DeleteClient(this); break; }
+                //переход к добавлению устройств клиента
+                case "GoToDevicesOfThisClient": { actionReactButton = new GoToDevicesOfThisClient(this); break; }
+                //добавление устройств к клиенту
+                case "AppDevicesForClients": { actionReactButton = new AppDevicesForClients(this); break; }
+                //переход к добавлению заказа на починку 
+                case "GoToAddRepairOrder": { actionReactButton = new GoToAddRepairOrder(this); break; }
+                //добавление заказа на починку 
+                case "AddRepairOrder": { actionReactButton = new AddRepairOrder(this); break; }
+
+                //переход к изменению заказа на починку
+                case "GoToChangeRepairOrder": { actionReactButton = new GoToChangeRepairOrder(this); break; }
+                //изменение заказа на починку 
+                case "ChangeRepairOrder": { actionReactButton = new ChangeRepairOrder(this); break; }
+                //Удаление заказа на починку  
+                case "DelRepairOrder": { actionReactButton = new DeleteRepairOrder(this); break; }
             }
             actionReactButton.ButtonClick();
         }
@@ -179,6 +204,12 @@ namespace StorageManage
                 case "CausesOfMalfunctionsMenu": { actionReactMenuItem = new GoToCausesOfMalfunctions(this); break; }
                     //неисправности
                 case "MalfunctionsMenu": { actionReactMenuItem = new GoToMalfunctions(this); break; }
+                //клиенты админ
+                case "ClientsMenu": { actionReactMenuItem = new GoToClients(this); break; }
+                //заказы на починку
+                case "RepairOrdersMenu": { actionReactMenuItem = new GoToRepairOrders(this); break; }
+                //заказы на починку менеджер
+                case "RepairOrdersManagerMenu": { actionReactMenuItem = new GoToRepairOrders(this); break; }
 
             }
             actionReactMenuItem.MenuClick();
@@ -203,6 +234,18 @@ namespace StorageManage
             {
                 e.Handled = true;
             }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox CMBX= sender as ComboBox;
+            switch (CMBX.Name)
+            {
+                //Выбор клиента для выбора техники
+                case "AddClientOfRepairOrder": { actionReactComboBox = new SelectClientFromAddRepairOrder(this); break; }
+                    
+            }
+            actionReactComboBox.SelectionChanged();
         }
     }
 }

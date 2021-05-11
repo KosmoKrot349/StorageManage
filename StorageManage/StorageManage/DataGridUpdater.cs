@@ -176,5 +176,47 @@ namespace StorageManage
             window.MalfunctionsDataGrid.ItemsSource = table.DefaultView;
 
         }
+
+        public static void ClientsDataGridUpdate(MainWindow window)
+        {
+            window.ClientsDataGrid.ItemsSource = window.ex.retuernTable("SELECT * from clients").DefaultView;
+        }
+
+
+        public static void RepairOrdersDataGridUpdate(MainWindow window)
+        {
+            DataTable table = new DataTable();
+            object[] sqlMass = new object[7];
+            table.Columns.Add("idrepairorders", System.Type.GetType("System.Int32"));
+            table.Columns.Add("clientname", System.Type.GetType("System.String"));
+            table.Columns.Add("devicetitle", System.Type.GetType("System.String"));
+            table.Columns.Add("datestart", System.Type.GetType("System.String"));
+            table.Columns.Add("dateend", System.Type.GetType("System.String"));
+            table.Columns.Add("state", System.Type.GetType("System.String"));
+            table.Columns.Add("desc", System.Type.GetType("System.String"));
+            MySqlDataReader reader = window.ex.returnResult("select repairorders.idrepairorders,clients.name,devices.title,repairorders.datestart,repairorders.dateend,repairorders.state,repairorders.desc from repairorders inner join clients using(idclients) inner join devices using(iddevices)");
+            if (reader.HasRows)
+            {
+
+                while (reader.Read())
+                {
+                    sqlMass[0] = reader.GetInt32(0);
+                    sqlMass[1] = reader.GetString(1);
+                    sqlMass[2] = reader.GetString(2);
+                    sqlMass[3] = reader.GetDateTime(3).ToShortDateString();
+                    sqlMass[4] = reader.GetDateTime(4).ToShortDateString();
+                    sqlMass[5] = reader.GetString(5);
+                    sqlMass[6] = reader.GetString(6);
+                    DataRow row;
+                    row = table.NewRow();
+                    row.ItemArray = sqlMass;
+                    table.Rows.Add(row);
+                }
+
+            }
+            window.ex.closeCon();
+            window.RepairOrdersDataGrid.ItemsSource = table.DefaultView;
+
+        }
     }
 }
