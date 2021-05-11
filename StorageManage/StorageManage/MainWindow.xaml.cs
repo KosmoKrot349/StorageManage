@@ -24,6 +24,8 @@ namespace StorageManage
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public string connectionstring = "";
         public string currentUserLogin;
         public SqlExecute ex;
         IButtonClick actionReactButton;
@@ -52,10 +54,13 @@ namespace StorageManage
         public int clientID;
         //для изменения заказа
         public int repairOrderForChange;
+        //максв чекбоксов для добавления деталей
+        public CheckBox[] causesForRepairOrderCheckBoxMas;
         public MainWindow()
         {
             InitializeComponent();
-            ex = new SqlExecute("server=localhost;database=storagedb;uid=root;password=1111;");
+            connectionstring = "server=localhost;database=storagedb;uid=root;password=1111;";
+            ex = new SqlExecute(connectionstring);
             hd =new HideAllGrids(this);
         }
 
@@ -173,6 +178,16 @@ namespace StorageManage
                 case "ChangeRepairOrder": { actionReactButton = new ChangeRepairOrder(this); break; }
                 //Удаление заказа на починку  
                 case "DelRepairOrder": { actionReactButton = new DeleteRepairOrder(this); break; }
+
+                //добавление неисправностей к заказу на починку
+                case "GoToMalFunctionsOfThisRepairOrder": { actionReactButton = new GoToMalFunctionsOfThisRepairOrder(this); break; }
+                //Расчёт вероятностей поломок
+                case "CountProbaility": { actionReactButton = new CountProbaility(this); break; }
+                //добавление поломок к заказу на починку
+                case "AppMalfunctionsForRepairOrder": { actionReactButton = new AppMalfunctionsForRepairOrder(this); break; }
+
+
+
             }
             actionReactButton.ButtonClick();
         }

@@ -29,6 +29,20 @@ namespace StorageManage.ButtonClick
                 }
             }
             window.ex.closeCon();
+
+            int numberOfOrder = 1;
+            reader = window.ex.returnResult("select idrepairorders+1 from repairorders order by idrepairorders limit 1");
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    numberOfOrder=reader.GetInt32(0);
+                }
+            }
+            window.ex.closeCon();
+
+            window.AddLableOfRepairOrder.Content = "Добавление заказа на починку № "+numberOfOrder;
+
             window.AddClientOfRepairOrder.SelectedIndex = 0;
             window.AddDateStartOfRepairOrder.SelectedDate = DateTime.Now;
             window.AddDateEndOfRepairOrder.SelectedDate = DateTime.Now;

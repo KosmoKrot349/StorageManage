@@ -111,6 +111,7 @@
     <Compile Include="ButtonClick\AppDetilsForDevice.cs" />
     <Compile Include="ButtonClick\AppDetilsForMalfunction.cs" />
     <Compile Include="ButtonClick\AppDevicesForClients.cs" />
+    <Compile Include="ButtonClick\AppMalfunctionsForRepairOrder.cs" />
     <Compile Include="ButtonClick\Authorization.cs" />
     <Compile Include="ButtonClick\ChangeDetail.cs" />
     <Compile Include="ButtonClick\ChangeDevice.cs" />
@@ -120,6 +121,7 @@
     <Compile Include="ButtonClick\ChangeUser.cs" />
     <Compile Include="ButtonClick\CompleetOrder.cs" />
     <Compile Include="ButtonClick\ConfirmUnconfirmUser.cs" />
+    <Compile Include="ButtonClick\CountProbaility.cs" />
     <Compile Include="ButtonClick\DeleteCauseOfMalfunction.cs" />
     <Compile Include="ButtonClick\DeleteClient.cs" />
     <Compile Include="ButtonClick\DeleteDetail.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="ButtonClick\GoToChangeOrder.cs" />
     <Compile Include="ButtonClick\GoToChangeUser.cs" />
     <Compile Include="ButtonClick\GoToDetailsOfThisMalfunction.cs" />
+    <Compile Include="ButtonClick\GoToMalFunctionsOfThisRepairOrder.cs" />
     <Compile Include="ButtonClick\IButtonClick.cs" />
     <Compile Include="ButtonClick\GoToRegistration.cs" />
     <Compile Include="ButtonClick\ImportantUnimportantDetail.cs" />

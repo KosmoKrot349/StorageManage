@@ -702,7 +702,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label FontSize="40" Content="Добавление заказа" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="40" Name="AddLableOfRepairOrder" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
             <Label FontSize="25" Content="Клиент" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Устройство" Grid.Row="2" Grid.Column="0" />
             <Label FontSize="25" Content="Дата принятия" Grid.Row="3" Grid.Column="0" />
@@ -757,6 +757,44 @@
 
             <Button FontSize="25" Content="Изменить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeRepairOrder" Click="Button_Click"/>
         </Grid>
+
+        <!--работа с неполадками для заказа на починку -->
+        <Grid Name="MalfunctionsForRepairOrdersGrid" Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="40" Name="MalfunctionsForRepairOrdersLabel"  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Grid  Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0"  Content="Неисправности" />
+                <Label Grid.Row="0" Grid.Column="1"  Content="Причины" />
+                <ScrollViewer  Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid Name="MalfunctionsListForRepairOrderGrid" />
+                </ScrollViewer>
+                <ScrollViewer Grid.Row="1"  Grid.Column="1"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid Name="CausesMalfunctionsListForRepairOrderGrid" />
+                </ScrollViewer>
+
+            </Grid>
+
+            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Name="AppMalfunctionsForRepairOrder" Click="Button_Click"/>
+            <Button FontSize="25" Content="Рассчитать вреоятность" Grid.Row="3" Grid.Column="1" Name="CountProbaility" Click="Button_Click"/>
+        </Grid>
+
     </Grid>
     
 </Window>
