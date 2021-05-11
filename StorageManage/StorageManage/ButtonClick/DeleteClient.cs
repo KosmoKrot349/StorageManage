@@ -29,6 +29,7 @@ namespace StorageManage.ButtonClick
             window.ex.closeCon();
 
             window.ex.ExecuteWithoutRedaer("delete from clients where idclients=" + arr[0]);
+            window.ex.ExecuteWithoutRedaer("delete from clients_devices where idclients=" + arr[0]);
 
             DataGridUpdater.ClientsDataGridUpdate(window);
         }

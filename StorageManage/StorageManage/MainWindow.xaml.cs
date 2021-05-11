@@ -190,6 +190,7 @@ namespace StorageManage
                 case "LeaveSettings": { actionReactButton = new LeaveSettings(this); break; }
                 //Сохранение настроек
                 case "SaveSettings":{ actionReactButton = new SaveSettings(this); break; }
+                    
             }
             actionReactButton.ButtonClick();
         }
@@ -223,11 +224,16 @@ namespace StorageManage
                 case "MalfunctionsMenu": { actionReactMenuItem = new GoToMalfunctions(this); break; }
                 //клиенты админ
                 case "ClientsMenu": { actionReactMenuItem = new GoToClients(this); break; }
+                //клиенты менеджер
+                case "ClientsManagerMenu": { actionReactMenuItem = new GoToClients(this); break; }
                 //заказы на починку
                 case "RepairOrdersMenu": { actionReactMenuItem = new GoToRepairOrders(this); break; }
                 //заказы на починку менеджер
                 case "RepairOrdersManagerMenu": { actionReactMenuItem = new GoToRepairOrders(this); break; }
-
+                //статистика работы 
+                case "StatisticMenu": { actionReactMenuItem = new GoToStatistic(this); break; }
+                //статистика менеджер 
+                case "StatisticMenuManager": { actionReactMenuItem = new GoToStatistic(this); break; }
             }
             actionReactMenuItem.MenuClick();
         }
@@ -260,7 +266,8 @@ namespace StorageManage
             {
                 //Выбор клиента для выбора техники
                 case "AddClientOfRepairOrder": { actionReactComboBox = new SelectClientFromAddRepairOrder(this); break; }
-                    
+                //Выбор клиента для выбора техники
+                case "MalfunctionsCMBX": { actionReactComboBox = new SelectMalfunctionFromStatistic(this); break; }
             }
             actionReactComboBox.SelectionChanged();
         }

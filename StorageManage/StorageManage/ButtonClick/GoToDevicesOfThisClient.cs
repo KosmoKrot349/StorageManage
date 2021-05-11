@@ -25,9 +25,12 @@ namespace StorageManage.ButtonClick
             if (DRV == null) { MessageBox.Show("Действие прервано, Вы не выбрали запись для работы"); return; }
             DataRow DR = DRV.Row;
             object[] arr = DR.ItemArray;
-
-            window.clientID = Convert.ToInt32(arr[0]);
-            window.DetailsForMalfunctionLabel.Content = "Устройства " + arr[1].ToString();
+            try
+            {
+                window.clientID = Convert.ToInt32(arr[0]);
+                window.DetailsForMalfunctionLabel.Content = "Устройства " + arr[1].ToString();
+            }
+            catch { return; }
             //определение кол-ва записей
             MySqlDataReader reader = window.ex.returnResult("select count(iddevices) from devices");
             int quantityMas = 0;

@@ -29,6 +29,7 @@ namespace StorageManage.ButtonClick
             window.ex.closeCon();
 
             window.ex.ExecuteWithoutRedaer("delete from devices where iddevices=" + arr[0]);
+            window.ex.ExecuteWithoutRedaer("delete from devices_details where iddevices=" + arr[0]);
 
             DataGridUpdater.DevicesDataGridUpdate(window);
         }

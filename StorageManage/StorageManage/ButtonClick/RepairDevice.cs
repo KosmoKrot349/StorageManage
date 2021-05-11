@@ -25,7 +25,7 @@ namespace StorageManage.ButtonClick
             DataRow DR = DRV.Row;
             object[] arr = DR.ItemArray;
             List<int> malfunctionsList = new List<int>();
-            MySqlDataReader reader = window.ex.returnResult("select idmalfunctions from repairorders_malfunctions where isusedetails = 0");
+            MySqlDataReader reader = window.ex.returnResult("select idmalfunctions from repairorders_malfunctions where isusedetails = 0 and idrepairorders="+arr[0]);
             if (reader.HasRows)
             { 
             while(reader.Read())
@@ -103,8 +103,9 @@ namespace StorageManage.ButtonClick
                     }
                     sqlpart = sqlpart.Substring(0, sqlpart.Length - 3);
                     window.ex.ExecuteWithoutRedaer("update details set storage=storage-1, saled=saled+1 where "+sqlpart );
-                    window.ex.ExecuteWithoutRedaer("update repairorders set costofdetails=(SELECT round(sum(price),3) FROM details where " + sqlpart + " ),state='Выполняется'");
+                    window.ex.ExecuteWithoutRedaer("update repairorders set costofdetails=(SELECT round(sum(price),3) FROM details where " + sqlpart + " ),state='Выполняется' where idrepairorders="+ arr[0]);
                     window.ex.ExecuteWithoutRedaer("update repairorders_malfunctions set isusedetails=1 where idrepairorders="+arr[0]);
+    
                 }
             }
             //возмоно есть детали в наличии, есть заказанные, нету недостающих
@@ -152,7 +153,7 @@ namespace StorageManage.ButtonClick
                 }
                 window.ex.closeCon();
                 MessageBox.Show(message,"Ремонт");
-                window.ex.ExecuteWithoutRedaer("update repairorders set state='Детали в заказе'");
+                window.ex.ExecuteWithoutRedaer("update repairorders set state='Детали в заказе' where idrepairorders=" + arr[0]);
             }
 
             //возможно есть хранимые, возможно есть заказанные, есть недостающие
@@ -224,15 +225,17 @@ namespace StorageManage.ButtonClick
                 MessageBoxResult res = MessageBox.Show(message, "Ремонт", MessageBoxButton.YesNo);
                 if (res == MessageBoxResult.Yes)
                 {
-                    window.ex.ExecuteWithoutRedaer("update repairorders set state='Детали в заказе'");
+                    window.ex.ExecuteWithoutRedaer("update repairorders set state='Детали в заказе' where idrepairorders=" + arr[0]);
                     AddOrdersFromRepair orderWindow = new AddOrdersFromRepair();
                     orderWindow.Owner = window;
                     orderWindow.missingDetails = missingDetails;
                     orderWindow.connectionString = window.connectionstring;
                     orderWindow.currentUserLogin = window.currentUserLogin;
                     orderWindow.Show();
-                }else window.ex.ExecuteWithoutRedaer("update repairorders set state='Не хватает детали'");
+                }else window.ex.ExecuteWithoutRedaer("update repairorders set state='Не хватает детали' where idrepairorders=" + arr[0]);
             }
+
+            DataGridUpdater.RepairOrdersDataGridUpdate(window);
         }
     }
 }

@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:StorageManage"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <!--основной грид-->
     <Grid Name="MineGrid" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="18pt"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <!--меню для админа-->
         <Menu Name="MenuForAdmin" Visibility="Collapsed">
@@ -29,7 +30,7 @@
                 <MenuItem Header="Клиенты" Name="ClientsMenu" Click="MenuItem_Click" />
                 <MenuItem Header="Заказы" Name="RepairOrdersMenu" Click="MenuItem_Click" />
             </MenuItem>
-            <MenuItem Header="Статистика"/>
+            <MenuItem Header="Статистика" Name="StatisticMenu" Click="MenuItem_Click" />
             <MenuItem Name="LeaveAdm" HorizontalAlignment="Right" Header="Выход" Click="MenuItem_Click"/>
         </Menu>
         <!--меню для менеджера-->
@@ -42,7 +43,7 @@
                 <MenuItem Header="Клиенты" Name="ClientsManagerMenu" Click="MenuItem_Click" />
                 <MenuItem Header="Заказы" Name="RepairOrdersManagerMenu" Click="MenuItem_Click" />
             </MenuItem>
-            <MenuItem Header="Статистика"/>
+            <MenuItem Header="Статистика" Name="StatisticMenuManager" Click="MenuItem_Click" />
             <MenuItem Name="LeaveMan" HorizontalAlignment="Right" Header="Выход" Click="MenuItem_Click"/>
         </Menu>
         <!--грид авторизации-->
@@ -836,6 +837,23 @@
                 <Button FontSize="25" Content="Сохранить" Grid.Column="0" Name="SaveSettings" Click="Button_Click"/>
                 <Button FontSize="25" Content="Назад" Grid.Column="1" Name="LeaveSettings" Click="Button_Click"/>
             </Grid>
+        </Grid>
+        <!--Грид стастики-->
+        <Grid Name="StatisticGrid"  Grid.Row="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Неполадка" Grid.Column="0" />
+                <ComboBox Name="MalfunctionsCMBX" Grid.Column="1"  SelectionChanged="ComboBox_SelectionChanged"/>
+            </Grid>
+            <oxy:PlotView Name="StatisticPlot" Grid.Row="1" />
         </Grid>
     </Grid>
     

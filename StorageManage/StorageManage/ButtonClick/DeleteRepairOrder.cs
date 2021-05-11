@@ -23,9 +23,8 @@ namespace StorageManage.ButtonClick
             if (DRV == null) { MessageBox.Show("Удаление прервано, Вы не выбрали запись для удаления."); return; }
             DataRow DR = DRV.Row;
             object[] arr = DR.ItemArray;
-            //if (arr[6].ToString() != "Получен") window.ex.ExecuteWithoutRedaer("update details set ordered=ordered-" + arr[5] + " where title='" + arr[1] + "'");
             window.ex.ExecuteWithoutRedaer("delete from repairorders where idrepairorders=" + arr[0]);
-
+            window.ex.ExecuteWithoutRedaer("delete from repairorders_malfunctions where idrepairorders=" + arr[0]);
             DataGridUpdater.RepairOrdersDataGridUpdate(window);
         }
     }
