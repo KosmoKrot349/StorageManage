@@ -98,6 +98,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddOrdersFromRepair.xaml.cs">
+      <DependentUpon>AddOrdersFromRepair.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ButtonClick\AddChangeCauseOfMalfunction.cs" />
     <Compile Include="ButtonClick\AddChangeClients.cs" />
     <Compile Include="ButtonClick\AddChangeTypeOfDevice.cs" />
@@ -147,10 +150,14 @@
     <Compile Include="ButtonClick\GoToChangeUser.cs" />
     <Compile Include="ButtonClick\GoToDetailsOfThisMalfunction.cs" />
     <Compile Include="ButtonClick\GoToMalFunctionsOfThisRepairOrder.cs" />
+    <Compile Include="ButtonClick\GoToSettings.cs" />
     <Compile Include="ButtonClick\IButtonClick.cs" />
     <Compile Include="ButtonClick\GoToRegistration.cs" />
     <Compile Include="ButtonClick\ImportantUnimportantDetail.cs" />
+    <Compile Include="ButtonClick\LeaveSettings.cs" />
     <Compile Include="ButtonClick\Registration.cs" />
+    <Compile Include="ButtonClick\RepairDevice.cs" />
+    <Compile Include="ButtonClick\SaveSettings.cs" />
     <Compile Include="DataGridUpdater.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="HideAllGrids.cs" />
@@ -168,6 +175,10 @@
     <Compile Include="SelectionChanged\ISelectionChanged.cs" />
     <Compile Include="SelectionChanged\SelectClientFromAddRepairOrder.cs" />
     <Compile Include="SqlExecute.cs" />
+    <Page Include="AddOrdersFromRepair.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -208,6 +219,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

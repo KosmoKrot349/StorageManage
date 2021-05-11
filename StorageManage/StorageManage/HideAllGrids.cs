@@ -48,6 +48,7 @@ namespace StorageManage
             window.AddRepairOrderGrid.Visibility = Visibility.Collapsed;
             window.ChangeRepairOrderGrid.Visibility = Visibility.Collapsed;
             window.MalfunctionsForRepairOrdersGrid.Visibility = Visibility.Collapsed;
+            window.SettingsGrid.Visibility = Visibility.Collapsed;
         }
     }
 }

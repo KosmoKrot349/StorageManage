@@ -186,7 +186,7 @@ namespace StorageManage
         public static void RepairOrdersDataGridUpdate(MainWindow window)
         {
             DataTable table = new DataTable();
-            object[] sqlMass = new object[7];
+            object[] sqlMass = new object[8];
             table.Columns.Add("idrepairorders", System.Type.GetType("System.Int32"));
             table.Columns.Add("clientname", System.Type.GetType("System.String"));
             table.Columns.Add("devicetitle", System.Type.GetType("System.String"));
@@ -194,7 +194,8 @@ namespace StorageManage
             table.Columns.Add("dateend", System.Type.GetType("System.String"));
             table.Columns.Add("state", System.Type.GetType("System.String"));
             table.Columns.Add("desc", System.Type.GetType("System.String"));
-            MySqlDataReader reader = window.ex.returnResult("select repairorders.idrepairorders,clients.name,devices.title,repairorders.datestart,repairorders.dateend,repairorders.state,repairorders.desc from repairorders inner join clients using(idclients) inner join devices using(iddevices)");
+            table.Columns.Add("costofdetails", System.Type.GetType("System.Double"));
+            MySqlDataReader reader = window.ex.returnResult("select repairorders.idrepairorders,clients.name,devices.title,repairorders.datestart,repairorders.dateend,repairorders.state,repairorders.desc,repairorders.costofdetails from repairorders inner join clients using(idclients) inner join devices using(iddevices)");
             if (reader.HasRows)
             {
 
@@ -207,6 +208,7 @@ namespace StorageManage
                     sqlMass[4] = reader.GetDateTime(4).ToShortDateString();
                     sqlMass[5] = reader.GetString(5);
                     sqlMass[6] = reader.GetString(6);
+                    sqlMass[7] = reader.GetDouble(7);
                     DataRow row;
                     row = table.NewRow();
                     row.ItemArray = sqlMass;

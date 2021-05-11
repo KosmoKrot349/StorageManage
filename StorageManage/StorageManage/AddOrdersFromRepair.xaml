@@ -1,0 +1,35 @@
+﻿<Window x:Class="StorageManage.AddOrdersFromRepair"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StorageManage"
+        mc:Ignorable="d"
+        Title="AddOrdersFromRepair" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid Name="AddOrderGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="40" Content="Добавление заказа" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+        <Label FontSize="25" Content="Деталь" Grid.Row="1" Grid.Column="0" />
+        <Label FontSize="25" Content="Кол-во" Grid.Row="2" Grid.Column="0" />
+        <Label FontSize="25" Content="Дата заказа" Grid.Row="3" Grid.Column="0" />
+        <Label FontSize="25" Content="Сумма" Grid.Row="4" Grid.Column="0" />
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
+        <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
+        <DatePicker  Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
+
+        <Button FontSize="25" Content="Добавить" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="AddOrder" Click="AddOrder_Click"/>
+    </Grid>
+</Window>

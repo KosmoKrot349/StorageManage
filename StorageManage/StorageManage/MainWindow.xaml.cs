@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
 using StorageManage.ButtonClick;
 using StorageManage.MenuClick;
 using StorageManage.SelectionChanged;
+using System.IO;
 
 namespace StorageManage
 {
@@ -59,7 +49,14 @@ namespace StorageManage
         public MainWindow()
         {
             InitializeComponent();
-            connectionstring = "server=localhost;database=storagedb;uid=root;password=1111;";
+            StreamReader sReader = new StreamReader(@"settings.txt");
+            string connString = "";
+            while (!sReader.EndOfStream)
+            {
+                connString += sReader.ReadLine() + ";";
+            }
+            sReader.Close();
+            connectionstring = "server="+ connString.Split(';')[0].Split(':')[1] + ";database="+ connString.Split(';')[1].Split(':')[1] + ";uid="+ connString.Split(';')[2].Split(':')[1] + ";password="+ connString.Split(';')[3].Split(':')[1] + ";";
             ex = new SqlExecute(connectionstring);
             hd =new HideAllGrids(this);
         }
@@ -185,9 +182,14 @@ namespace StorageManage
                 case "CountProbaility": { actionReactButton = new CountProbaility(this); break; }
                 //добавление поломок к заказу на починку
                 case "AppMalfunctionsForRepairOrder": { actionReactButton = new AppMalfunctionsForRepairOrder(this); break; }
-
-
-
+                //попытка ремонта тезники из заказа
+                case "RepairDevice": { actionReactButton = new RepairDevice(this); break; }
+                //Переход к настройкам
+                case "GoToSettings": { actionReactButton = new GoToSettings(this); break; }
+                //Выход из настроек
+                case "LeaveSettings": { actionReactButton = new LeaveSettings(this); break; }
+                //Сохранение настроек
+                case "SaveSettings":{ actionReactButton = new SaveSettings(this); break; }
             }
             actionReactButton.ButtonClick();
         }
