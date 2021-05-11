@@ -20,6 +20,7 @@ namespace StorageManage.MenuClick
         {
             HideAllGrids hd = new HideAllGrids(window);
             hd.HideAll();
+            window.AuthorPassword.Password = "";
             window.AuthorGrid.Visibility = Visibility.Visible;
             window.MenuForAdmin.Visibility = Visibility.Collapsed;
             window.MenuForManager.Visibility = Visibility.Collapsed;

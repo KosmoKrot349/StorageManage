@@ -41,7 +41,7 @@ namespace StorageManage.ButtonClick
             }
             window.ex.closeCon();
 
-            window.AddLableOfRepairOrder.Content = "Добавление заказа на починку № "+numberOfOrder;
+            window.AddLableOfRepairOrder.Content = "Добавление заказа на починку";
 
             window.AddClientOfRepairOrder.SelectedIndex = 0;
             window.AddDateStartOfRepairOrder.SelectedDate = DateTime.Now;

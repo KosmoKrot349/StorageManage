@@ -181,6 +181,7 @@
     <Compile Include="MenuClick\GoToUsers.cs" />
     <Compile Include="MenuClick\IMenuClick.cs" />
     <Compile Include="MenuClick\Leave.cs" />
+    <Compile Include="RepairForecast.cs" />
     <Compile Include="SelectionChanged\ISelectionChanged.cs" />
     <Compile Include="SelectionChanged\SelectClientFromAddRepairOrder.cs" />
     <Compile Include="SelectionChanged\SelectMalfunctionFromStatistic.cs" />

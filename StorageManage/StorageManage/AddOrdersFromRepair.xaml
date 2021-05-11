@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StorageManage"
         mc:Ignorable="d"
-        Title="AddOrdersFromRepair" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Добавление заказов" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid Name="AddOrderGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
@@ -25,11 +26,11 @@
         <Label FontSize="25" Content="Дата заказа" Grid.Row="3" Grid.Column="0" />
         <Label FontSize="25" Content="Сумма" Grid.Row="4" Grid.Column="0" />
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
-        <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
-        <DatePicker  Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
+        <TextBlock FontSize="20" Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
+        <TextBox FontSize="20"  VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
+        <TextBox FontSize="20"  VerticalContentAlignment="Center"  Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
+        <DatePicker FontSize="20"  Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
 
-        <Button FontSize="25" Content="Добавить" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="AddOrder" Click="AddOrder_Click"/>
+        <Button FontSize="20" Content="Добавить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="AddOrder" Click="AddOrder_Click"/>
     </Grid>
 </Window>

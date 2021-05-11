@@ -6,7 +6,7 @@
          xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:local="clr-namespace:StorageManage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="StorageManage" Height="450" Width="800">
     <!--основной грид-->
     <Grid Name="MineGrid" >
         <Grid.RowDefinitions>
@@ -49,7 +49,9 @@
         <!--грид авторизации-->
         <Grid Name="AuthorGrid" Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -58,24 +60,24 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Авторизация" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label Content="Логин" Grid.Row="1" Grid.Column="0" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
-            <Label Content="Пароль" Grid.Row="2" Grid.Column="0" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
-            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Content="Авторизация" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="40"/>
+            <Label Content="Логин" Grid.Row="2" Grid.Column="0" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <Label Content="Пароль" Grid.Row="3" Grid.Column="0" FontSize="25" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Авторизация" FontSize="25" Name="AuthorAuthor" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Регистрация" FontSize="25" Name="AuthorRegister" Grid.Column="1" Click="Button_Click"/>
+                <Button Content="Авторизация" FontSize="20" Name="AuthorAuthor" Grid.Column="0" Click="Button_Click"/>
+                <Button Content="Регистрация" FontSize="20" Name="AuthorRegister" Grid.Column="1" Click="Button_Click"/>
                 <Button Grid.Column="2" Name="GoToSettings" Click="Button_Click">
                     <Image Source="images.png" />
                 </Button>
             </Grid>
 
-            <TextBox Grid.Row="1" Grid.Column="1" Text="root" Name="AuthorLogin"/>
-            <PasswordBox Grid.Row="2" Grid.Column="1" Password="rootpass" Name="AuthorPassword"/>
+            <TextBox Grid.Row="2"  FontSize="20" VerticalContentAlignment="Center" Grid.Column="1" Text="root" Name="AuthorLogin"/>
+            <PasswordBox Grid.Row="3" FontSize="20" VerticalContentAlignment="Center" Grid.Column="1" Password="rootpass" Name="AuthorPassword"/>
 
         </Grid>
         <!--грид регистрации-->
@@ -86,21 +88,30 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Label FontSize="40" Content="Регистрация" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-            <Label FontSize="25" Content="Логин" Grid.Row="1" Grid.Column="0" />
-            <Label FontSize="25" Content="Пароль" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Логин" Grid.Row="2" Grid.Column="0" />
             <Label FontSize="25" Content="Пароль" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Пароль" Grid.Row="4" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1" Name="RegLogin" />
-            <PasswordBox Grid.Row="2" Grid.Column="1" Name="RegPass"/>
-            <PasswordBox Grid.Row="3" Grid.Column="1" Name="RegRePass"/>
-
-            <Button FontSize="25" Content="Регистрация" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="RegRegister" Click="Button_Click"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="RegLogin" />
+            <PasswordBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="RegPass"/>
+            <PasswordBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="RegRePass"/>
+            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button FontSize="20" Grid.Column="0" Content="Регистрация" Name="RegRegister" Click="Button_Click"/>
+                <Button FontSize="20" Grid.Column="1" Content="Назад" Name="BackFromRegister" Click="Button_Click"/>
+            </Grid>
+            
         </Grid>
         <!--грид главного окна проги-->
         <Grid Name="MainWindowGrid" Grid.Row="1" Visibility="Collapsed">
@@ -127,15 +138,17 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Удалить" Name="DelUser" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Редактировать" Name="GoToChangeUser" Grid.Column="1"  Click="Button_Click"/>
-                <Button Content="Принять/Отменить" Name="Confirmed" Grid.Column="2"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelUser" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Редактировать" Name="GoToChangeUser" Grid.Column="1"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Принять/Отменить" Name="Confirmed" Grid.Column="2"  Click="Button_Click"/>
             </Grid>
         </Grid>
 <!--грид изменения пользователя-->
         <Grid Name="ChangeUserGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -145,13 +158,13 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Label FontSize="40" Content="Изменение у/з" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-            <Label FontSize="25" Content="Логин" Grid.Row="1" Grid.Column="0" />
-            <Label FontSize="25" Content="Пароль" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Логин" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Пароль" Grid.Row="3" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1" Name="ChangeLogin" />
-            <TextBox Grid.Row="2" Grid.Column="1" Name="ChangePass"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="ChangeLogin" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="ChangePass"/>
 
-            <Button FontSize="25" Content="Изменить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeUser" Click="Button_Click"/>
+            <Button FontSize="20" Content="Изменить" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeUser" Click="Button_Click"/>
         </Grid>
 <!--грид деталей для амдина-->
         <Grid Name="DetailsGrid" Visibility="Collapsed" Grid.Row="1">
@@ -168,7 +181,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0" Name="FilterDetailsGridAdmin"/>
 
-                <Button Grid.Column="1" Content="Применить" Name="AppDetailsFilterAdmin" Click="Button_Click"/>
+                <Button FontSize="20" Grid.Column="1" Content="Применить" Name="AppDetailsFilterAdmin" Click="Button_Click"/>
             </Grid>
             <DataGrid Name="DetailsDataGrid" Grid.RowSpan="2"  AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
                 <DataGrid.Columns>
@@ -183,7 +196,7 @@
             </DataGrid>
             <!--операции в детялях для менеджера-->
             <Grid Grid.Row="3" Name="DetailsOperationForManagerGrid" Visibility="Collapsed">
-                <Button Content="Заказать" Name="GoToAddOrderManagerFromDetails"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Заказать" Name="GoToAddOrderManagerFromDetails"  Click="Button_Click"/>
             </Grid>
             <!--операции в деталях для админа-->
             <Grid Grid.Row="3" Name="DetailsOperationForAdminGrid" Visibility="Collapsed">
@@ -194,19 +207,19 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить" Name="GoToAddDetail" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelDetail" Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Редактировать" Name="GoToChangeDetail" Grid.Column="2"  Click="Button_Click"/>
-                <Button Content="Важная/Не важная" Name="ImportantDetail" Grid.Column="3"  Click="Button_Click"/>
-                <Button Content="Заказать" Name="GoToAddOrderAdmin" Grid.Column="4"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить" Name="GoToAddDetail" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelDetail" Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Редактировать" Name="GoToChangeDetail" Grid.Column="2"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Важная/Не важная" Name="ImportantDetail" Grid.Column="3"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Заказать" Name="GoToAddOrderAdmin" Grid.Column="4"  Click="Button_Click"/>
             </Grid>
         </Grid>
-        <!--грид деталей для менеджера-->
-        
+
         <!--грид добавления детали-->
         <Grid Name="AddDetailGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -225,18 +238,19 @@
             <Label FontSize="25" Content="Кол-во продано" Grid.Row="4" Grid.Column="0" />
             <Label FontSize="25" Content="Важная деталь" Grid.Row="5" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1" Name="AddDetTitle" />
-            <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Name="AddDetPrice"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="AddDetStorage" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="AddDetSaled" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="AddDetTitle" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Name="AddDetPrice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="AddDetStorage" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="AddDetSaled" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
             <CheckBox  Grid.Row="5" Grid.Column="1" Name="AddDetIsImportant" />
 
-            <Button FontSize="25" Content="Добавить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="AddDetail" Click="Button_Click"/>
+            <Button FontSize="20" Content="Добавить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="AddDetail" Click="Button_Click"/>
         </Grid>
         <!--грид редактирования детали-->
         <Grid Name="ChangeDetailGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -255,13 +269,13 @@
             <Label FontSize="25" Content="Кол-во продано" Grid.Row="4" Grid.Column="0" />
             <Label FontSize="25" Content="Важная деталь" Grid.Row="5" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1" Name="ChangeDetTitle" />
-            <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Name="ChangeDetPrice"/>
-            <TextBox Grid.Row="3" Grid.Column="1" Name="ChangeDetStorage" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="ChangeDetSaled" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="ChangeDetTitle" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Name="ChangeDetPrice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="ChangeDetStorage" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="ChangeDetSaled" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
             <CheckBox  Grid.Row="5" Grid.Column="1" Name="ChangeDetIsImportant" />
 
-            <Button FontSize="25" Content="Изменить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeDetail" Click="Button_Click"/>
+            <Button FontSize="20" Content="Изменить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeDetail" Click="Button_Click"/>
         </Grid>
 
         <!--грид заказов деталей для амдина-->
@@ -288,8 +302,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Добавить" Name="GoToAddOrderManager"  Click="Button_Click"/>
-                <Button Grid.Column="1" Content="Редактировать" Name="GoToChangeOrderManager"  Click="Button_Click"/>
+                <Button FontSize="20" Grid.Column="0" Content="Добавить" Name="GoToAddOrderManager"  Click="Button_Click"/>
+                <Button FontSize="20" Grid.Column="1" Content="Редактировать" Name="GoToChangeOrderManager"  Click="Button_Click"/>
             </Grid>
             <!--операции в заказах для админа-->
             <Grid Grid.Row="2" Name="OrdersOperationForAdminGrid" Visibility="Collapsed">
@@ -299,16 +313,17 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить" Name="GoToAddOrder" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelOrder" Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Редактировать" Name="GoToChangeOrder" Grid.Column="2"  Click="Button_Click"/>
-                <Button Content="Получить" Name="CompleetOrder" Grid.Column="3"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить" Name="GoToAddOrder" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelOrder" Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Редактировать" Name="GoToChangeOrder" Grid.Column="2"  Click="Button_Click"/>
+                <Button FontSize="20" Content="Получить" Name="CompleetOrder" Grid.Column="3"  Click="Button_Click"/>
             </Grid>
         </Grid>
         <!--добавление заказа-->
         <Grid Name="AddOrderGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -325,17 +340,18 @@
             <Label FontSize="25" Content="Дата заказа" Grid.Row="3" Grid.Column="0" />
             <Label FontSize="25" Content="Сумма" Grid.Row="4" Grid.Column="0" />
 
-            <ComboBox Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
-            <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
-            <DatePicker  Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
+            <DatePicker  FontSize="20" Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
 
-            <Button FontSize="25" Content="Добавить" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="AddOrder" Click="Button_Click"/>
+            <Button FontSize="20" Content="Добавить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="AddOrder" Click="Button_Click"/>
         </Grid>
         <!--изменение заказа-->
         <Grid Name="ChangeOrderGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -353,11 +369,11 @@
             <Label FontSize="25" Content="Сумма" Grid.Row="4" Grid.Column="0" />
 
             <Label Grid.Row="1" Grid.Column="1" Name="ChangeOrderDetailTitle"/>
-            <TextBox Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="ChangeOrderQuantity"/>
-            <TextBox Grid.Row="4" Grid.Column="1" Name="ChangeOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
-            <DatePicker  Grid.Row="3" Grid.Column="1" Name="ChangeOrderDate" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="ChangeOrderQuantity"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="ChangeOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
+            <DatePicker FontSize="20"  Grid.Row="3" Grid.Column="1" Name="ChangeOrderDate" />
 
-            <Button FontSize="25" Content="Изменить" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeOrder" Click="Button_Click"/>
+            <Button FontSize="20" Content="Изменить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeOrder" Click="Button_Click"/>
         </Grid>
 
         <!--грид типов устройств( только админ )-->
@@ -378,8 +394,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить/Изменить" Name="AddChangeTypeOfDevice" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelTypeOfDevice" Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить/Изменить" Name="AddChangeTypeOfDevice" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelTypeOfDevice" Grid.Column="1" Click="Button_Click"/>
             </Grid>
         </Grid>
         <!--грид устройств( только админ )-->
@@ -403,16 +419,17 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить" Name="GoToAddDevice" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Изменить" Name="GoToChangeDevice"  Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelDevice" Grid.Column="2" Click="Button_Click"/>
-                <Button Content="Детали устройства" Name="GoToDetailsOfThisDevice" Grid.Column="3" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить" Name="GoToAddDevice" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Изменить" Name="GoToChangeDevice"  Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelDevice" Grid.Column="2" Click="Button_Click"/>
+                <Button FontSize="20" Content="Детали устройства" Name="GoToDetailsOfThisDevice" Grid.Column="3" Click="Button_Click"/>
             </Grid>
         </Grid>
 <!--добавление устройства-->
         <Grid Name="AddDeviceGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -424,17 +441,18 @@
             <Label FontSize="40" Content="Добавление устройства" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
             <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Тип" Grid.Row="2" Grid.Column="0" />
-            
-            <TextBox Grid.Row="1" Grid.Column="1"  Name="AddDeviceTitle"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Name="AddDeviceTypeOfDevice"/>
-            
-            <Button FontSize="25" Content="Добавить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AddDevice" Click="Button_Click"/>
+
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"  Name="AddDeviceTitle"/>
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="AddDeviceTypeOfDevice"/>
+
+            <Button FontSize="20"  Content="Добавить" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="AddDevice" Click="Button_Click"/>
         </Grid>
 
         <!--изменение устройства-->
         <Grid Name="ChangeDeviceGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -447,10 +465,10 @@
             <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Тип" Grid.Row="2" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1"  Name="ChangeDeviceTitle"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Name="ChangeDeviceTypeOfDevice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"  Name="ChangeDeviceTitle"/>
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="ChangeDeviceTypeOfDevice"/>
 
-            <Button FontSize="25" Content="Изменить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeDevice" Click="Button_Click"/>
+            <Button FontSize="20" Content="Изменить" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeDevice" Click="Button_Click"/>
         </Grid>
 
 
@@ -472,7 +490,7 @@
                 <Grid Name="DetailsListForDeviceGrid" />
             </ScrollViewer>
 
-            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDetilsForDevice" Click="Button_Click"/>
+            <Button FontSize="20" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDetilsForDevice" Click="Button_Click"/>
         </Grid>
 <!--грид причин неисправности-->
         <Grid Name="CausesOfMalfunctionsGrid" Visibility="Collapsed" Grid.Row="1">
@@ -492,8 +510,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить/Изменить" Name="AddChangeCauseOfMalfunction" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelCauseOfMalfunction" Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить/Изменить" Name="AddChangeCauseOfMalfunction" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelCauseOfMalfunction" Grid.Column="1" Click="Button_Click"/>
             </Grid>
         </Grid>
         <!--грид неисправностей( только админ )-->
@@ -518,11 +536,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить" Name="GoToAddMalfunction" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Изменить" Name="GoToChangeMalfunction"  Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelMalfunction" Grid.Column="2" Click="Button_Click"/>
-                <Button Content="Детали для починки" Name="GoToDetailsOfThisMalfunction" Grid.Column="3" Click="Button_Click"/>
-                <Button Content="Причины поломки" Name="GoToCausesOfThisMalfunction" Grid.Column="4" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить" Name="GoToAddMalfunction" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Изменить" Name="GoToChangeMalfunction"  Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelMalfunction" Grid.Column="2" Click="Button_Click"/>
+                <Button FontSize="20" Content="Детали для починки" Name="GoToDetailsOfThisMalfunction" Grid.Column="3" Click="Button_Click"/>
+                <Button FontSize="20" Content="Причины поломки" Name="GoToCausesOfThisMalfunction" Grid.Column="4" Click="Button_Click"/>
             </Grid>
         </Grid>
 
@@ -530,6 +548,7 @@
         <Grid Name="AddMalfunctionGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -542,10 +561,10 @@
             <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Тип устройства" Grid.Row="2" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1"  Name="AddMalfunctionTitle"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Name="AddMalfunctionTypeOfDevice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"  Name="AddMalfunctionTitle"/>
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="AddMalfunctionTypeOfDevice"/>
 
-            <Button FontSize="25" Content="Добавить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AddMalfunction" Click="Button_Click"/>
+            <Button FontSize="20" Content="Добавить" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="AddMalfunction" Click="Button_Click"/>
         </Grid>
 
 
@@ -553,6 +572,7 @@
         <Grid Name="ChangeMalfunctionGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -565,10 +585,10 @@
             <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Тип устройства" Grid.Row="2" Grid.Column="0" />
 
-            <TextBox Grid.Row="1" Grid.Column="1"  Name="ChangeMalfunctionTitle"/>
-            <ComboBox Grid.Row="2" Grid.Column="1" Name="ChangeMalfunctionTypeOfDevice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"  Name="ChangeMalfunctionTitle"/>
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="ChangeMalfunctionTypeOfDevice"/>
 
-            <Button FontSize="25" Content="Изменить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeMalfunction" Click="Button_Click"/>
+            <Button FontSize="20" Content="Изменить" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeMalfunction" Click="Button_Click"/>
         </Grid>
         
          <!--работа с запчастями для неисправности-->
@@ -589,7 +609,7 @@
                 <Grid Name="DetailsListForMalfunctionGrid" />
             </ScrollViewer>
 
-            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDetilsForMalfunction" Click="Button_Click"/>
+            <Button FontSize="20" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDetilsForMalfunction" Click="Button_Click"/>
         </Grid>
 
 
@@ -611,7 +631,7 @@
                 <Grid Name="CausesListForMalfunctionGrid" />
             </ScrollViewer>
 
-            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppCausesForMalfunction" Click="Button_Click"/>
+            <Button FontSize="20" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppCausesForMalfunction" Click="Button_Click"/>
         </Grid>
 
         <!--грид клиентов-->
@@ -634,9 +654,9 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить/Изменить" Name="AddChangeClients" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelClient" Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Добавить устройства" Name="GoToDevicesOfThisClient" Grid.Column="2" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить/Изменить" Name="AddChangeClients" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelClient" Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить устройства" Name="GoToDevicesOfThisClient" Grid.Column="2" Click="Button_Click"/>
             </Grid>
         </Grid>
 
@@ -658,7 +678,7 @@
                 <Grid Name="DevicesListForClientsGrid" />
             </ScrollViewer>
 
-            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDevicesForClients" Click="Button_Click"/>
+            <Button FontSize="20" Content="Применить" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Name="AppDevicesForClients" Click="Button_Click"/>
         </Grid>
 
 <!--грид заказов на починку-->
@@ -688,11 +708,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить" Name="GoToAddRepairOrder" Grid.Column="0" Click="Button_Click"/>
-                <Button Content="Изменить" Name="GoToChangeRepairOrder"  Grid.Column="1" Click="Button_Click"/>
-                <Button Content="Удалить" Name="DelRepairOrder" Grid.Column="2" Click="Button_Click"/>
-                <Button Content="Неисправности" Name="GoToMalFunctionsOfThisRepairOrder" Grid.Column="3" Click="Button_Click"/>
-                <Button Content="Ремонт" Name="RepairDevice" Grid.Column="4" Click="Button_Click"/>
+                <Button FontSize="20" Content="Добавить" Name="GoToAddRepairOrder" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Изменить" Name="GoToChangeRepairOrder"  Grid.Column="1" Click="Button_Click"/>
+                <Button FontSize="20" Content="Удалить" Name="DelRepairOrder" Grid.Column="2" Click="Button_Click"/>
+                <Button FontSize="20" Content="Неисправности" Name="GoToMalFunctionsOfThisRepairOrder" Grid.Column="3" Click="Button_Click"/>
+                <Button FontSize="20" Content="Ремонт" Name="RepairDevice" Grid.Column="4" Click="Button_Click"/>
             </Grid>
         </Grid>
 
@@ -700,6 +720,7 @@
         <Grid Name="AddRepairOrderGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -717,18 +738,19 @@
             <Label FontSize="25" Content="Дата выполнения" Grid.Row="4" Grid.Column="0" />
             <Label FontSize="25" Content="Описание" Grid.Row="5" Grid.Column="0" />
 
-            <ComboBox Grid.Row="1" Grid.Column="1" Name="AddClientOfRepairOrder" SelectionChanged="ComboBox_SelectionChanged"  />
-            <ComboBox Grid.Row="2" Grid.Column="1" Name="AddDeviceOfRepairOrder"/>
-            <DatePicker Grid.Row="3" Grid.Column="1" Name="AddDateStartOfRepairOrder" />
-            <DatePicker Grid.Row="4" Grid.Column="1" Name="AddDateEndOfRepairOrder" />
-            <TextBox Grid.Row="5" Grid.Column="1" Name="AddDescOfRepairOrder" />
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="AddClientOfRepairOrder" SelectionChanged="ComboBox_SelectionChanged"  />
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="AddDeviceOfRepairOrder"/>
+            <DatePicker FontSize="20" Grid.Row="3" Grid.Column="1" Name="AddDateStartOfRepairOrder" />
+            <DatePicker FontSize="20" Grid.Row="4" Grid.Column="1" Name="AddDateEndOfRepairOrder" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Name="AddDescOfRepairOrder" />
 
-            <Button FontSize="25" Content="Добавить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="AddRepairOrder" Click="Button_Click"/>
+            <Button FontSize="20" Content="Добавить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="AddRepairOrder" Click="Button_Click"/>
         </Grid>
         <!--Изменение заказа на ремонт-->
         <Grid Name="ChangeRepairOrderGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -750,13 +772,13 @@
             <Label FontSize="25" Content="Описание" Grid.Row="5" Grid.Column="0" />
             <Label FontSize="25" Content="Состояние" Grid.Row="6" Grid.Column="0" />
             <Label FontSize="25" Content="Стоимость деталей" Grid.Row="7" Grid.Column="0" />
-            
-            <Label Grid.Row="1" Grid.Column="1" Name="ChangeClientOfRepairOrder"   />
-            <Label Grid.Row="2" Grid.Column="1" Name="ChangeDeviceOfRepairOrder"/>
-            <DatePicker Grid.Row="3" Grid.Column="1" Name="ChangeDateStartOfRepairOrder" />
-            <DatePicker Grid.Row="4" Grid.Column="1" Name="ChangeDateEndOfRepairOrder" />
-            <TextBox Grid.Row="5" Grid.Column="1" Name="ChangeDescOfRepairOrder" />
-            <ComboBox Grid.Row="6" Grid.Column="1" Name="ChangeStatOfRepairOrder">
+
+            <Label FontSize="20" Grid.Row="1" Grid.Column="1" Name="ChangeClientOfRepairOrder"   />
+            <Label FontSize="20" Grid.Row="2" Grid.Column="1" Name="ChangeDeviceOfRepairOrder"/>
+            <DatePicker FontSize="20" Grid.Row="3" Grid.Column="1" Name="ChangeDateStartOfRepairOrder" />
+            <DatePicker FontSize="20" Grid.Row="4" Grid.Column="1" Name="ChangeDateEndOfRepairOrder" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Name="ChangeDescOfRepairOrder" />
+            <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="6" Grid.Column="1" Name="ChangeStatOfRepairOrder">
                 <ComboBoxItem Content="Принят"  />
                 <ComboBoxItem Content="Выполняется" />
                 <ComboBoxItem Content="Не хватает детали" />
@@ -764,8 +786,8 @@
                 <ComboBoxItem Content="Выполнен" />
                 <ComboBoxItem Content="Отменен" />
             </ComboBox>
-            <TextBox Grid.Row="7" Grid.Column="1" Name="ChangeCostOfDetailsOfRepairOrder" PreviewTextInput="Label_PreviewTextInput" />
-            <Button FontSize="25" Content="Изменить" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeRepairOrder" Click="Button_Click"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Name="ChangeCostOfDetailsOfRepairOrder" PreviewTextInput="Label_PreviewTextInput" />
+            <Button FontSize="20" Content="Изменить" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeRepairOrder" Click="Button_Click"/>
         </Grid>
 
         <!--работа с неполадками для заказа на починку -->
@@ -790,8 +812,8 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0"  Content="Неисправности" />
-                <Label Grid.Row="0" Grid.Column="1"  Content="Причины" />
+                <Label FontSize="25" Grid.Row="0" Grid.Column="0"  Content="Неисправности" />
+                <Label  FontSize="25" Grid.Row="0" Grid.Column="1"  Content="Причины" />
                 <ScrollViewer  Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <Grid Name="MalfunctionsListForRepairOrderGrid" />
                 </ScrollViewer>
@@ -801,13 +823,14 @@
 
             </Grid>
 
-            <Button FontSize="25" Content="Применить" Grid.Row="3" Grid.Column="0" Name="AppMalfunctionsForRepairOrder" Click="Button_Click"/>
-            <Button FontSize="25" Content="Рассчитать вреоятность" Grid.Row="3" Grid.Column="1" Name="CountProbaility" Click="Button_Click"/>
+            <Button FontSize="20" Content="Применить" Grid.Row="3" Grid.Column="0" Name="AppMalfunctionsForRepairOrder" Click="Button_Click"/>
+            <Button FontSize="20" Content="Рассчитать вреоятность" Grid.Row="3" Grid.Column="1" Name="CountProbaility" Click="Button_Click"/>
         </Grid>
         <!--Грид натроек-->
         <Grid Name="SettingsGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -825,17 +848,17 @@
             <Label FontSize="25" Content="Пароль" Grid.Row="4" Grid.Column="0" />
 
 
-            <TextBox FontSize="25" Name="SettingServer" Grid.Row="1" Grid.Column="1" />
-            <TextBox FontSize="25" Name="SettingDB" Grid.Row="2" Grid.Column="1" />
-            <TextBox FontSize="25" Name="SettingUser" Grid.Row="3" Grid.Column="1" />
-            <TextBox FontSize="25" Name="SettingPass" Grid.Row="4" Grid.Column="1" />
-            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Name="SettingServer" Grid.Row="1" Grid.Column="1" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Name="SettingDB" Grid.Row="2" Grid.Column="1" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Name="SettingUser" Grid.Row="3" Grid.Column="1" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Name="SettingPass" Grid.Row="4" Grid.Column="1" />
+            <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="25" Content="Сохранить" Grid.Column="0" Name="SaveSettings" Click="Button_Click"/>
-                <Button FontSize="25" Content="Назад" Grid.Column="1" Name="LeaveSettings" Click="Button_Click"/>
+                <Button FontSize="20" Content="Сохранить" Grid.Column="0" Name="SaveSettings" Click="Button_Click"/>
+                <Button FontSize="20" Content="Назад" Grid.Column="1" Name="LeaveSettings" Click="Button_Click"/>
             </Grid>
         </Grid>
         <!--Грид стастики-->
@@ -850,8 +873,8 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Неполадка" Grid.Column="0" />
-                <ComboBox Name="MalfunctionsCMBX" Grid.Column="1"  SelectionChanged="ComboBox_SelectionChanged"/>
+                <Label FontSize="25" Content="Неполадка" Grid.Column="0" />
+                <ComboBox FontSize="14" VerticalContentAlignment="Center" Name="MalfunctionsCMBX" Grid.Column="1"  SelectionChanged="ComboBox_SelectionChanged"/>
             </Grid>
             <oxy:PlotView Name="StatisticPlot" Grid.Row="1" />
         </Grid>

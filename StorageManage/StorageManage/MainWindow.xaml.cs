@@ -59,6 +59,10 @@ namespace StorageManage
             connectionstring = "server="+ connString.Split(';')[0].Split(':')[1] + ";database="+ connString.Split(';')[1].Split(':')[1] + ";uid="+ connString.Split(';')[2].Split(':')[1] + ";password="+ connString.Split(';')[3].Split(':')[1] + ";";
             ex = new SqlExecute(connectionstring);
             hd =new HideAllGrids(this);
+
+
+            RepairForecast rp = new RepairForecast();
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -188,6 +192,8 @@ namespace StorageManage
                 case "GoToSettings": { actionReactButton = new GoToSettings(this); break; }
                 //Выход из настроек
                 case "LeaveSettings": { actionReactButton = new LeaveSettings(this); break; }
+                //Выход из регистрации
+                case "BackFromRegister": { actionReactButton = new LeaveSettings(this); break; }
                 //Сохранение настроек
                 case "SaveSettings":{ actionReactButton = new SaveSettings(this); break; }
                     

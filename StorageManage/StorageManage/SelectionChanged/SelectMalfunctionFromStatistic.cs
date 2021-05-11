@@ -28,6 +28,9 @@ namespace StorageManage.SelectionChanged
                 {
                     PlotModel model = new PlotModel();
                     ColumnSeries series = new ColumnSeries();
+                    series.Title = window.MalfunctionsCMBX.SelectedItem.ToString();
+                    series.StrokeColor = OxyColors.Black;
+                    series.StrokeThickness = 1;
                     CategoryAxis axis = new CategoryAxis();
                     MySqlDataReader reader = window.ex.returnResult("select DATE_FORMAT(repairorders.datestart, '%M -%Y'),count(repairorders_malfunctions.recordid)from malfunctions inner join repairorders_malfunctions using(idmalfunctions) inner join repairorders using(idrepairorders) where idmalfunctions=(select idmalfunctions from malfunctions where title='" + window.MalfunctionsCMBX.SelectedItem.ToString() + "') group by DATE_FORMAT(repairorders.datestart, ' %M -%Y')");
                     if (reader.HasRows)
@@ -39,6 +42,9 @@ namespace StorageManage.SelectionChanged
                         }
                     }
                     window.ex.closeCon();
+                   string forecastString= RepairForecast.Forecast(window.MalfunctionsCMBX.SelectedItem.ToString(),window.connectionstring);
+                    series.Items.Add(new ColumnItem {Value=Convert.ToInt32(forecastString.Split('_')[1]) });
+                    axis.Labels.Add(forecastString.Split('_')[0]+" forecast");
                     model.Axes.Add(axis);
                     model.Series.Add(series);
                     window.StatisticPlot.Model = model;
@@ -69,6 +75,8 @@ namespace StorageManage.SelectionChanged
                         {
                             series[i] = new ColumnSeries();
                             series[i].Title = reader.GetString(0);
+                            series[i].StrokeColor = OxyColors.Black;
+                            series[i].StrokeThickness = 1;
                             i++;
                         }
                     }
@@ -81,6 +89,7 @@ namespace StorageManage.SelectionChanged
                         {
                             for (int i = 0; i < series.Length; i++)
                             {
+                               //получение значений всей неисправностей для каждой даты
                                 SqlExecute ex2 = new SqlExecute(window.connectionstring);
                                 MySqlDataReader reader2 = ex2.returnResult("select count(repairorders_malfunctions.recordid)from malfunctions inner join repairorders_malfunctions using(idmalfunctions) inner join repairorders using(idrepairorders) where idmalfunctions=(select idmalfunctions from malfunctions where title='" + series[i].Title + "') and  Month(repairorders.datestart)=" + reader.GetString(0).Split('-')[0]+ " and  Year(repairorders.datestart)=" + reader.GetString(0).Split('-')[1]);
                                 if (reader2.HasRows)
@@ -96,9 +105,17 @@ namespace StorageManage.SelectionChanged
                         }
                     }
                     window.ex.closeCon();
+                    
+                    string forecastDate = "";
+                    for (int i = 0; i < series.Length; i++)
+                    {
+                        string forecastString=RepairForecast.Forecast(series[i].Title,window.connectionstring);
+                        series[i].Items.Add(new ColumnItem { Value = Convert.ToInt32(forecastString.Split('_')[1]) });
+                        forecastDate = forecastString.Split('_')[0] + " forecast";
+                        model.Series.Add(series[i]);
+                    }
+                    axis.Labels.Add(forecastDate);
                     model.Axes.Add(axis);
-                    for(int i=0;i<series.Length;i++)
-                    model.Series.Add(series[i]);
                     window.StatisticPlot.Model = model;
 
 
