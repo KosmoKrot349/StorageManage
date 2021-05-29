@@ -22,9 +22,11 @@ namespace StorageManage.ButtonClick
             if (String.IsNullOrEmpty(window.ChangeMalfunctionTitle.Text)) { MessageBox.Show("Поля не заполнены"); return; }
             int idtype = 1;
             MySqlDataReader reader = window.ex.returnResult("select idmalfunctions from malfunctions where title='" + window.ChangeMalfunctionTitle.Text + "'");
+            if (reader == null) { return; }
             if (reader.HasRows && window.ChangeMalfunctionTitle.Text != window.unChangeMalfunctionTitle) { MessageBox.Show("Такая неисправность уже добавлена"); window.ex.closeCon(); return; }
             window.ex.closeCon();
             reader = window.ex.returnResult("select idtypes from typeofdevices where title='" + window.ChangeMalfunctionTypeOfDevice.SelectedItem.ToString() + "'");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())

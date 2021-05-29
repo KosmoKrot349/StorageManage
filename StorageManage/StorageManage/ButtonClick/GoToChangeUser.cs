@@ -25,8 +25,10 @@ public GoToChangeUser(MainWindow window)
             window.unChangeLogin= arr[1].ToString();
             window.userIdForChange = Convert.ToInt32(arr[0]);
 
-            window.ChangeLogin.Text = arr[1].ToString();
-            window.ChangePass.Text = arr[2].ToString();
+            window.ChangeUserName.Text = arr[1].ToString();
+            window.ChangeUserPhone.Text = arr[2].ToString();
+            window.ChangeLogin.Text = arr[3].ToString();
+            window.ChangePass.Text = arr[4].ToString();
             window.hd.HideAll();
             window.ChangeUserGrid.Visibility = Visibility.Visible;
         }

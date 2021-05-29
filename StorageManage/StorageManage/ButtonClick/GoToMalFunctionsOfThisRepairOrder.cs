@@ -30,6 +30,7 @@ namespace StorageManage.ButtonClick
             window.MalfunctionsForRepairOrdersLabel.Content = "Неисправности для заказа № " + arr[0].ToString();
             //определение кол-ва записей для поломок
             MySqlDataReader reader = window.ex.returnResult("select count(malfunctions.title) from  typeofdevices inner join malfunctions using(idtypes) where typeofdevices.idtypes=(select idtypes from devices where title='"+arr[2].ToString()+"' )");
+            if (reader == null) { return; }
             int quantityMas = 0;
             if (reader.HasRows)
             {
@@ -43,6 +44,7 @@ namespace StorageManage.ButtonClick
             //определение чекбоксов
             window.MalfunctionsListForRepairOrderGrid.Children.Clear();
             reader = window.ex.returnResult("select malfunctions.title,malfunctions.idmalfunctions from  typeofdevices inner join malfunctions using(idtypes) where typeofdevices.idtypes=(select idtypes from devices where title='" + arr[2].ToString() + "' )");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 int i = 0;
@@ -67,6 +69,7 @@ namespace StorageManage.ButtonClick
             for (int i = 0; i < window.detailsCheckBoxMas.Length; i++)
             {
                 reader = window.ex.returnResult("select recordid from repairorders_malfunctions where idmalfunctions=" + window.detailsCheckBoxMas[i].Name.Split('_')[1] + " and idrepairorders=" + window.repairOrderForChange);
+                if (reader == null) { return; }
                 if (reader.HasRows) { window.detailsCheckBoxMas[i].IsChecked = true; }
                 window.ex.closeCon();
             }
@@ -74,6 +77,7 @@ namespace StorageManage.ButtonClick
 
             //определение кол-ва записей для поломок
             reader = window.ex.returnResult("select count(distinct causesofmalfunction.title) from  typeofdevices inner join malfunctions using(idtypes) inner join malfunctions_causes using(idmalfunctions) inner join causesofmalfunction using(idcauses)   where typeofdevices.idtypes=(select idtypes from devices where title='"+arr[2].ToString()+"' )");
+            if (reader == null) { return; }
             quantityMas = 0;
             if (reader.HasRows)
             {
@@ -87,6 +91,7 @@ namespace StorageManage.ButtonClick
             //определение чекбоксов
             window.CausesMalfunctionsListForRepairOrderGrid.Children.Clear();
             reader = window.ex.returnResult("select distinct causesofmalfunction.title, causesofmalfunction.idcauses from typeofdevices inner join malfunctions using (idtypes) inner join malfunctions_causes using (idmalfunctions) inner join causesofmalfunction using (idcauses) where typeofdevices.idtypes = (select idtypes from devices where title = '"+arr[2].ToString()+"' )");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 int i = 0;

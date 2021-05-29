@@ -33,6 +33,7 @@ namespace StorageManage.ButtonClick
             catch { return; }
             //определение кол-ва записей
             MySqlDataReader reader = window.ex.returnResult("select count(iddevices) from devices");
+            if (reader == null) { return; }
             int quantityMas = 0;
             if (reader.HasRows)
             {
@@ -46,6 +47,7 @@ namespace StorageManage.ButtonClick
             //определение чекбоксов
             window.DevicesListForClientsGrid.Children.Clear();
             reader = window.ex.returnResult("select title,iddevices from devices order by title desc");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 int i = 0;
@@ -70,6 +72,7 @@ namespace StorageManage.ButtonClick
             for (int i = 0; i < window.detailsCheckBoxMas.Length; i++)
             {
                 reader = window.ex.returnResult("select recordid from clients_devices where idclients=" + window.clientID + " and iddevices=" + window.detailsCheckBoxMas[i].Name.Split('_')[1]);
+                if (reader == null) { return; }
                 if (reader.HasRows) { window.detailsCheckBoxMas[i].IsChecked = true; }
                 window.ex.closeCon();
             }

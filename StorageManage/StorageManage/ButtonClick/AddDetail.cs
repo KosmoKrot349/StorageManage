@@ -21,6 +21,7 @@ namespace StorageManage.ButtonClick
         {
             if (String.IsNullOrEmpty(window.AddDetTitle.Text) || String.IsNullOrEmpty(window.AddDetPrice.Text) || String.IsNullOrEmpty(window.AddDetStorage.Text) || String.IsNullOrEmpty(window.AddDetSaled.Text)) { MessageBox.Show("Поля не заполнены"); return; }
            MySqlDataReader reader= window.ex.returnResult("select iddetails from details where title='"+window.AddDetTitle.Text+"'");
+            if (reader == null) { return; }
             if (reader.HasRows) { MessageBox.Show("Такая деталь уже добавленна");window.ex.closeCon();return; }
             window.ex.closeCon();
             int i = 0;

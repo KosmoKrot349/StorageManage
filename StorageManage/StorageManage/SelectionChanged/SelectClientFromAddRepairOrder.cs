@@ -22,6 +22,7 @@ namespace StorageManage.SelectionChanged
             if (window.AddClientOfRepairOrder.Items.Count != 0)
             {
                 MySqlDataReader reader = window.ex.returnResult("select devices.title from devices inner join clients_devices using(iddevices) where idclients=(select idclients from clients where name='" + window.AddClientOfRepairOrder.SelectedItem.ToString() + "')");
+                if (reader == null) { return; }
                 if (reader.HasRows)
                 {
                     while (reader.Read())

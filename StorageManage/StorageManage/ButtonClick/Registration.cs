@@ -19,13 +19,13 @@ namespace StorageManage.ButtonClick
 
         public void ButtonClick()
         {
-            if (String.IsNullOrEmpty(window.RegLogin.Text) || String.IsNullOrEmpty(window.RegPass.Password) || String.IsNullOrEmpty(window.RegRePass.Password)) { MessageBox.Show("Поля не заполнены");return; }
+            if (String.IsNullOrEmpty(window.RegLogin.Text) || String.IsNullOrEmpty(window.RegPass.Password) || String.IsNullOrEmpty(window.RegRePass.Password)|| String.IsNullOrEmpty(window.RegUserName.Text) || String.IsNullOrEmpty(window.RegUserPhone.Text)) { MessageBox.Show("Поля не заполнены");return; }
             if (window.RegLogin.Text == "root" || window.RegLogin.Text == "Root") { MessageBox.Show("Невозможно создать пользователя с таким именем");return; }
             if (window.RegPass.Password != window.RegRePass.Password) { MessageBox.Show("Пароли должны совпадать");return; }
             MySqlDataReader reader = window.ex.returnResult("select id from users where login='"+window.RegLogin.Text+ "'");
             if (reader.HasRows) { MessageBox.Show("Такой пользователь уже создан");return; }
             window.ex.closeCon();
-            window.ex.ExecuteWithoutRedaer("INSERT INTO `users`(`login`,`password`)VALUES('"+window.RegLogin.Text+ "','" + window.RegPass.Password + "')");
+            window.ex.ExecuteWithoutRedaer("INSERT INTO `users`(`login`,`password`,name,phone)VALUES('"+window.RegLogin.Text+ "','" + window.RegPass.Password + "','"+window.RegUserName.Text+"','"+window.RegUserPhone.Text+"')");
             window.hd.HideAll();
             window.AuthorGrid.Visibility = Visibility.Visible;
             

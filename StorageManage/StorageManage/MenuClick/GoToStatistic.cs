@@ -22,6 +22,7 @@ namespace StorageManage.MenuClick
             window.hd.HideAll();
             window.StatisticGrid.Visibility = Visibility.Visible;
             MySqlDataReader reader = window.ex.returnResult("select title from malfunctions order by title desc");
+            if (reader == null) { return; }
             window.MalfunctionsCMBX.Items.Clear();
             
             if (reader.HasRows)

@@ -23,6 +23,7 @@ public ChangeOrder(MainWindow window)
             int detid = -1;
   
            MySqlDataReader reader = window.ex.returnResult("select iddetails from details where title='" + window.ChangeOrderDetailTitle.Content + "'");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())

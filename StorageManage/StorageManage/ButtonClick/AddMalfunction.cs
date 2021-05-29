@@ -22,6 +22,7 @@ namespace StorageManage.ButtonClick
             if (String.IsNullOrEmpty(window.AddMalfunctionTitle.Text)) { MessageBox.Show("Поля не заполнены"); return; }
             int idtype = 1;
             MySqlDataReader reader = window.ex.returnResult("select idmalfunctions from malfunctions where title='" + window.AddMalfunctionTitle.Text + "'");
+            if (reader == null) { return; }
             if (reader.HasRows) { MessageBox.Show("Такое устройство уже добавлено"); window.ex.closeCon(); return; }
             window.ex.closeCon();
             reader = window.ex.returnResult("select idtypes from typeofdevices where title='" + window.AddMalfunctionTypeOfDevice.SelectedItem.ToString() + "'");

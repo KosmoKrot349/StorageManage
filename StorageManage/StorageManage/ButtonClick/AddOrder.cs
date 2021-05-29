@@ -23,7 +23,8 @@ namespace StorageManage.ButtonClick
 
             int detid = -1;
             int userid = -1;
-            MySqlDataReader reader = window.ex.returnResult("select id from users where login='"+window.currentUserLogin+"'");
+            MySqlDataReader reader = window.ex.returnResult("select id from users where login='" + window.currentUserLogin + "'");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())
@@ -33,6 +34,7 @@ namespace StorageManage.ButtonClick
             }
             window.ex.closeCon();
             reader = window.ex.returnResult("select iddetails from details where title='" + window.AddOrderDetailTitle.SelectedItem.ToString()+"'");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())

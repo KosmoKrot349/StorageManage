@@ -13,21 +13,26 @@ namespace StorageManage
         public static void UserDataGridUpdate(MainWindow window)
         {
             DataTable table = new DataTable();
-            object[] sqlMass = new object[4];
+            object[] sqlMass = new object[6];
             table.Columns.Add("id", System.Type.GetType("System.Int32"));
+            table.Columns.Add("name", System.Type.GetType("System.String"));
+            table.Columns.Add("phone", System.Type.GetType("System.String"));
             table.Columns.Add("login", System.Type.GetType("System.String"));
             table.Columns.Add("password", System.Type.GetType("System.String"));
             table.Columns.Add("isconfirmed", System.Type.GetType("System.String"));
             MySqlDataReader reader = window.ex.returnResult("select * from users where id!=1");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
 
                 while (reader.Read())
                 {
                     sqlMass[0] = reader.GetInt32(0);
-                    sqlMass[1] = reader.GetString(1);
-                    sqlMass[2] = reader.GetString(2);
-                    if (reader.GetBoolean(3) == true) { sqlMass[3] = "Одобрен"; } else { sqlMass[3] = "Не одобрен"; }
+                    sqlMass[1] = reader.GetString(4);
+                    sqlMass[2] = reader.GetString(5);
+                    sqlMass[3] = reader.GetString(1);
+                    sqlMass[4] = reader.GetString(2);
+                    if (reader.GetBoolean(3) == true) { sqlMass[5] = "Одобрен"; } else { sqlMass[5] = "Не одобрен"; }
                     DataRow row;
                     row = table.NewRow();
                     row.ItemArray = sqlMass;
@@ -52,6 +57,7 @@ namespace StorageManage
             table.Columns.Add("price", System.Type.GetType("System.Double"));
             table.Columns.Add("isimportant", System.Type.GetType("System.String"));
             MySqlDataReader reader = window.ex.returnResult(sql);
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
 
@@ -88,6 +94,7 @@ namespace StorageManage
             table.Columns.Add("quantity", System.Type.GetType("System.Int32"));
             table.Columns.Add("iscompleet", System.Type.GetType("System.String"));
             MySqlDataReader reader = window.ex.returnResult("select orders.idorders,details.title,users.login,orders.orderdate,orders.orderprice,orders.quantity,orders.iscompleet from orders inner join users using(id) inner join details using(iddetails)");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
 
@@ -125,6 +132,7 @@ namespace StorageManage
             table.Columns.Add("titledevice", System.Type.GetType("System.String"));
             table.Columns.Add("titletype", System.Type.GetType("System.String"));
             MySqlDataReader reader = window.ex.returnResult("select devices.iddevices,devices.title,typeofdevices.title from devices inner join typeofdevices using(idtypes)");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
 
@@ -157,6 +165,7 @@ namespace StorageManage
             table.Columns.Add("titlemalfunction", System.Type.GetType("System.String"));
             table.Columns.Add("titletype", System.Type.GetType("System.String"));
             MySqlDataReader reader = window.ex.returnResult("select malfunctions.idmalfunctions,malfunctions.title,typeofdevices.title from malfunctions inner join typeofdevices using(idtypes)");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
 
@@ -196,6 +205,7 @@ namespace StorageManage
             table.Columns.Add("desc", System.Type.GetType("System.String"));
             table.Columns.Add("costofdetails", System.Type.GetType("System.Double"));
             MySqlDataReader reader = window.ex.returnResult("select repairorders.idrepairorders,clients.name,devices.title,repairorders.datestart,repairorders.dateend,repairorders.state,repairorders.desc,repairorders.costofdetails from repairorders inner join clients using(idclients) inner join devices using(iddevices)");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
 

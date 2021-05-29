@@ -29,6 +29,8 @@ namespace StorageManage.ButtonClick
             sWriter.WriteLine(user);
             sWriter.WriteLine(pass);
             sWriter.Close();
+           window.connectionstring = "server=" + window.SettingServer.Text + ";database=" + window.SettingDB.Text + ";uid=" + window.SettingUser.Text + ";password=" + window.SettingPass.Text + ";";
+            window.ex = new SqlExecute(window.connectionstring);
             IButtonClick actreact = new LeaveSettings(window);
             actreact.ButtonClick();
         }

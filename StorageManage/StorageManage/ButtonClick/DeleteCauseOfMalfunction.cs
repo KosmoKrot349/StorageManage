@@ -25,6 +25,7 @@ namespace StorageManage.ButtonClick
             DataRow DR = DRV.Row;
             object[] arr = DR.ItemArray;
             MySqlDataReader reader = window.ex.returnResult("select recordid from malfunctions_causes where idcauses=" + arr[0]);
+            if (reader == null) { return; }
             if (reader.HasRows) { window.ex.closeCon(); MessageBox.Show("Невозможно удалить запись"); return; }
             window.ex.closeCon();
             window.ex.ExecuteWithoutRedaer("delete from causesofmalfunction where idcauses=" + arr[0]);

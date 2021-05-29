@@ -24,6 +24,7 @@ namespace StorageManage.ButtonClick
             window.AddMalfunctionTitle.Text = "";
             window.AddMalfunctionTypeOfDevice.Items.Clear();
             MySqlDataReader reader = window.ex.returnResult("select title from typeofdevices order by title desc");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())

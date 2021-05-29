@@ -22,9 +22,11 @@ namespace StorageManage.ButtonClick
             if (String.IsNullOrEmpty(window.ChangeDeviceTitle.Text)) { MessageBox.Show("Поля не заполнены"); return; }
             int idtype = 1;
             MySqlDataReader reader = window.ex.returnResult("select iddevices from devices where title='" + window.ChangeDeviceTitle.Text + "'");
+            if (reader == null) { return; }
             if (reader.HasRows&&window.ChangeDeviceTitle.Text!=window.unChangeDeviceTitle) { MessageBox.Show("Такое устройство уже добавлено"); window.ex.closeCon(); return; }
             window.ex.closeCon();
             reader = window.ex.returnResult("select idtypes from typeofdevices where title='" + window.ChangeDeviceTypeOfDevice.SelectedItem.ToString() + "'");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())

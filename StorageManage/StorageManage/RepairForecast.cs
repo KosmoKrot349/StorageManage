@@ -15,6 +15,7 @@ namespace StorageManage
             //получаю месяцы
             SqlExecute ex = new SqlExecute(connectionString);
             MySqlDataReader reader = ex.returnResult("SELECT DISTINCT DATE_FORMAT(repairorders.datestart, '%m-%Y') FROM repairorders_malfunctions inner join repairorders using (idrepairorders) ");
+            if (reader == null) { return "DataBaseError-0001_0"; }
             List<string> MonthLs = new List<string>();
             if (reader.HasRows)
             {
@@ -34,6 +35,7 @@ namespace StorageManage
             for (int i = 0; i < MonthLs.Count - 1; i++)
             {
                 reader = ex.returnResult("select count(recordid) from repairorders_malfunctions inner join repairorders using (idrepairorders) where idmalfunctions = (select idmalfunctions from malfunctions where title='"+titlemalfunction+"') and Year(repairorders.datestart)="+MonthLs[i].Split('-')[1]+" and Month(repairorders.datestart) = "+MonthLs[i].Split('-')[0]);
+                if (reader == null) { return "DataBaseError-0001_0"; }
                 if (reader.HasRows)
                 {
                     while (reader.Read())

@@ -25,6 +25,7 @@ namespace StorageManage.ButtonClick
             {
                 window.AddOrderDetailTitle.Items.Clear();
                 MySqlDataReader reader = window.ex.returnResult("select title from details order by title desc");
+                if (reader == null) { return; }
                 if (reader.HasRows)
                 {
                     while (reader.Read())

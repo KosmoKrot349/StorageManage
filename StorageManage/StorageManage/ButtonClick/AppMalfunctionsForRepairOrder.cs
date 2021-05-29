@@ -25,6 +25,7 @@ namespace StorageManage.ButtonClick
                 if (window.detailsCheckBoxMas[i].IsChecked == true)
                 {
                     MySqlDataReader reader = window.ex.returnResult("select recordid from repairorders_malfunctions where idrepairorders=" + window.repairOrderForChange + " and idmalfunctions=" + window.detailsCheckBoxMas[i].Name.Split('_')[1]);
+                    if (reader == null) { return; }
                     bool b = true;
                     if (reader.HasRows) b = false;
                     window.ex.closeCon();

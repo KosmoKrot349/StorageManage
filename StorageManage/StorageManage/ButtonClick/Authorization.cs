@@ -22,6 +22,7 @@ namespace StorageManage.ButtonClick
             if(String.IsNullOrEmpty(window.AuthorLogin.Text)|| String.IsNullOrEmpty(window.AuthorPassword.Password)) { MessageBox.Show("Поля не заполненны");return; }
           
             MySqlDataReader reader = window.ex.returnResult("select isconfirmed from users where login='"+ window.AuthorLogin.Text + "' and password='"+ window.AuthorPassword.Password + "'");
+            if (reader == null) { return; }
             if (reader.HasRows == false) { MessageBox.Show("Такого пользователя не существует"); window.ex.closeCon(); return; }
             reader.Read();
             bool b = reader.GetBoolean(0);

@@ -20,6 +20,7 @@ public ChangeDetail(MainWindow window)
         {
             if (String.IsNullOrEmpty(window.ChangeDetTitle.Text) || String.IsNullOrEmpty(window.ChangeDetPrice.Text) || String.IsNullOrEmpty(window.ChangeDetStorage.Text) || String.IsNullOrEmpty(window.ChangeDetSaled.Text)) { MessageBox.Show("Поля не заполнены"); return; }
             MySqlDataReader reader = window.ex.returnResult("select iddetails from details where title='" + window.ChangeDetTitle.Text + "'");
+            if (reader == null) { return; }
             if (reader.HasRows && window.unChangeDetailTitle!= window.ChangeDetTitle.Text) { MessageBox.Show("Такая деталь уже добавленна"); window.ex.closeCon(); return; }
             window.ex.closeCon();
             int i = 0;

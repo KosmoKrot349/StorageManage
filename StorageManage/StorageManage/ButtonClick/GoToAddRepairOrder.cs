@@ -21,6 +21,7 @@ namespace StorageManage.ButtonClick
         {
             window.AddClientOfRepairOrder.Items.Clear();
          MySqlDataReader reader = window.ex.returnResult("select name from clients order by name desc");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 while (reader.Read())

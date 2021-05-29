@@ -31,6 +31,7 @@ namespace StorageManage.ButtonClick
             window.ChangeDeviceTitle.Text = arr[1].ToString();
             window.ChangeDeviceTypeOfDevice.Items.Clear();
            MySqlDataReader reader = window.ex.returnResult("select title from typeofdevices order by title desc");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 int i = 0;

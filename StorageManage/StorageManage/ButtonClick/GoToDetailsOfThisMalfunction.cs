@@ -30,6 +30,7 @@ namespace StorageManage.ButtonClick
             window.DetailsForMalfunctionLabel.Content = "Детали для неисправности " + arr[1].ToString();
             //определение кол-ва записей
             MySqlDataReader reader = window.ex.returnResult("select count(iddetails) from details");
+            if (reader == null) { return; }
             int quantityMas = 0;
             if (reader.HasRows)
             {
@@ -43,6 +44,7 @@ namespace StorageManage.ButtonClick
             //определение чекбоксов
             window.DetailsListForMalfunctionGrid.Children.Clear();
             reader = window.ex.returnResult("select title,iddetails from details order by title desc");
+            if (reader == null) { return; }
             if (reader.HasRows)
             {
                 int i = 0;
@@ -67,6 +69,7 @@ namespace StorageManage.ButtonClick
             for (int i = 0; i < window.detailsCheckBoxMas.Length; i++)
             {
                 reader = window.ex.returnResult("select recordid from malfunctions_details where idmalfunctions=" + window.malfunctionIdForChange + " and iddetails=" + window.detailsCheckBoxMas[i].Name.Split('_')[1]);
+                if (reader == null) { return; }
                 if (reader.HasRows) { window.detailsCheckBoxMas[i].IsChecked = true; }
                 window.ex.closeCon();
             }

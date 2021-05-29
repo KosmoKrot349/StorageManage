@@ -26,6 +26,7 @@ namespace StorageManage.ButtonClick
             object[] arr = DR.ItemArray;
             List<int> malfunctionsList = new List<int>();
             MySqlDataReader reader = window.ex.returnResult("select idmalfunctions from repairorders_malfunctions where isusedetails = 0 and idrepairorders="+arr[0]);
+            if (reader == null) { return; }
             if (reader.HasRows)
             { 
             while(reader.Read())
@@ -46,23 +47,28 @@ namespace StorageManage.ButtonClick
             for(int i=0; i<malfunctionsList.Count();i++)
             {
                 reader = window.ex.returnResult("select iddetails from malfunctions_details where idmalfunctions="+malfunctionsList[i]+" and  iddetails in(select iddetails from devices_details inner join devices using(iddevices) where title='"+arr[2].ToString()+"')");
+                if (reader == null) { return; }
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        SqlExecute ex2 = new SqlExecute(window.connectionstring);
-                        MySqlDataReader reader2 = ex2.returnResult("select storage,ordered from details where iddetails="+reader.GetInt32(0));
-                        if (reader2.HasRows)
+                        try
                         {
-                            while (reader2.Read())
+                            SqlExecute ex2 = new SqlExecute(window.connectionstring);
+                            MySqlDataReader reader2 = ex2.returnResult("select storage,ordered from details where iddetails=" + reader.GetInt32(0));
+                            if (reader2.HasRows)
                             {
-                                if (reader2.GetInt32(0) > 0) { storageDetails.Add(reader.GetInt32(0)); }
-                                if (reader2.GetInt32(0) == 0 && reader2.GetInt32(1) != 0) { orderedDetails.Add(reader.GetInt32(0)); }
-                                if (reader2.GetInt32(0) == 0 && reader2.GetInt32(1) == 0) { missingDetails.Add(reader.GetInt32(0)); }
+                                while (reader2.Read())
+                                {
+                                    if (reader2.GetInt32(0) > 0) { storageDetails.Add(reader.GetInt32(0)); }
+                                    if (reader2.GetInt32(0) == 0 && reader2.GetInt32(1) != 0) { orderedDetails.Add(reader.GetInt32(0)); }
+                                    if (reader2.GetInt32(0) == 0 && reader2.GetInt32(1) == 0) { missingDetails.Add(reader.GetInt32(0)); }
+                                }
+
                             }
-                        
+                            ex2.closeCon();
                         }
-                        ex2.closeCon();
+                        catch (MySqlException exception) { MessageBox.Show(exception.Message);return; }
                     
                     }
                 

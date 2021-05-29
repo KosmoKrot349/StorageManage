@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="StorageManage" Height="450" Width="800">
     <!--основной грид-->
-    <Grid Name="MineGrid" >
+    <Grid Name="MainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="18pt"/>
             <RowDefinition/>
@@ -83,7 +83,8 @@
         <!--грид регистрации-->
         <Grid Name="RegisterGrid" Grid.Row="1" Visibility="Collapsed">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -96,14 +97,19 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Label FontSize="40" Content="Регистрация" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-            <Label FontSize="25" Content="Логин" Grid.Row="2" Grid.Column="0" />
-            <Label FontSize="25" Content="Пароль" Grid.Row="3" Grid.Column="0" />
-            <Label FontSize="25" Content="Пароль" Grid.Row="4" Grid.Column="0" />
 
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="RegLogin" />
-            <PasswordBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="RegPass"/>
-            <PasswordBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="RegRePass"/>
-            <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" >
+            <Label FontSize="25" Content="ФИО" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Телефон" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Логин" Grid.Row="4" Grid.Column="0" />
+            <Label FontSize="25" Content="Пароль" Grid.Row="5" Grid.Column="0" />
+            <Label FontSize="25" Content="Пароль" Grid.Row="6" Grid.Column="0" />
+
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="RegUserName" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="RegUserPhone" MaxLength="13" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="RegLogin" />
+            <PasswordBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Name="RegPass"/>
+            <PasswordBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="6" Grid.Column="1" Name="RegRePass"/>
+            <Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -127,6 +133,8 @@
             <DataGrid Name="UserDataGrid" Grid.RowSpan="2"  AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="0">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="id" Binding="{Binding id}" Width="4*"/>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding name}" Width="4*" />
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding phone}" Width="4*" />
                     <DataGridTextColumn Header="Логин" Binding="{Binding login}" Width="4*" />
                     <DataGridTextColumn Header="Пароль" Binding="{Binding password}" Width="4*" />
                     <DataGridTextColumn Header="Одобрен"  Binding="{Binding isconfirmed}" Width="4*"  />
@@ -152,19 +160,25 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Label FontSize="40" Content="Изменение у/з" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
-            <Label FontSize="25" Content="Логин" Grid.Row="2" Grid.Column="0" />
-            <Label FontSize="25" Content="Пароль" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="ФИО" Grid.Row="2" Grid.Column="0" />
+            <Label FontSize="25" Content="Номер телефона" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Логин" Grid.Row="4" Grid.Column="0" />
+            <Label FontSize="25" Content="Пароль" Grid.Row="5" Grid.Column="0" />
+            
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="ChangeUserName" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="ChangeUserPhone"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="ChangeLogin" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Name="ChangePass"/>
 
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Name="ChangeLogin" />
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="ChangePass"/>
-
-            <Button FontSize="20" Content="Изменить" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeUser" Click="Button_Click"/>
+            <Button FontSize="20" Content="Изменить" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeUser" Click="Button_Click"/>
         </Grid>
 <!--грид деталей для амдина-->
         <Grid Name="DetailsGrid" Visibility="Collapsed" Grid.Row="1">
@@ -231,10 +245,10 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label FontSize="40" Content="Добавление дтали" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="40" Content="Добавление детали" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
             <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Цена" Grid.Row="2" Grid.Column="0" />
-            <Label FontSize="25" Content="Кол-во на слкаде" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Кол-во на складе" Grid.Row="3" Grid.Column="0" />
             <Label FontSize="25" Content="Кол-во продано" Grid.Row="4" Grid.Column="0" />
             <Label FontSize="25" Content="Важная деталь" Grid.Row="5" Grid.Column="0" />
 
@@ -262,10 +276,10 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label FontSize="40" Content="Изменение дтали" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+            <Label FontSize="40" Content="Изменение детали" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
             <Label FontSize="25" Content="Название" Grid.Row="1" Grid.Column="0" />
             <Label FontSize="25" Content="Цена" Grid.Row="2" Grid.Column="0" />
-            <Label FontSize="25" Content="Кол-во на слкаде" Grid.Row="3" Grid.Column="0" />
+            <Label FontSize="25" Content="Кол-во на складе" Grid.Row="3" Grid.Column="0" />
             <Label FontSize="25" Content="Кол-во продано" Grid.Row="4" Grid.Column="0" />
             <Label FontSize="25" Content="Важная деталь" Grid.Row="5" Grid.Column="0" />
 
@@ -394,7 +408,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="20" Content="Добавить/Изменить" Name="AddChangeTypeOfDevice" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Сохранить/Изменить" Name="AddChangeTypeOfDevice" Grid.Column="0" Click="Button_Click"/>
                 <Button FontSize="20" Content="Удалить" Name="DelTypeOfDevice" Grid.Column="1" Click="Button_Click"/>
             </Grid>
         </Grid>
@@ -510,7 +524,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="20" Content="Добавить/Изменить" Name="AddChangeCauseOfMalfunction" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Сохранить/Изменить" Name="AddChangeCauseOfMalfunction" Grid.Column="0" Click="Button_Click"/>
                 <Button FontSize="20" Content="Удалить" Name="DelCauseOfMalfunction" Grid.Column="1" Click="Button_Click"/>
             </Grid>
         </Grid>
@@ -654,7 +668,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button FontSize="20" Content="Добавить/Изменить" Name="AddChangeClients" Grid.Column="0" Click="Button_Click"/>
+                <Button FontSize="20" Content="Сохранить/Изменить" Name="AddChangeClients" Grid.Column="0" Click="Button_Click"/>
                 <Button FontSize="20" Content="Удалить" Name="DelClient" Grid.Column="1" Click="Button_Click"/>
                 <Button FontSize="20" Content="Добавить устройства" Name="GoToDevicesOfThisClient" Grid.Column="2" Click="Button_Click"/>
             </Grid>
@@ -824,7 +838,7 @@
             </Grid>
 
             <Button FontSize="20" Content="Применить" Grid.Row="3" Grid.Column="0" Name="AppMalfunctionsForRepairOrder" Click="Button_Click"/>
-            <Button FontSize="20" Content="Рассчитать вреоятность" Grid.Row="3" Grid.Column="1" Name="CountProbaility" Click="Button_Click"/>
+            <Button FontSize="20" Content="Рассчитать вероятность" Grid.Row="3" Grid.Column="1" Name="CountProbaility" Click="Button_Click"/>
         </Grid>
         <!--Грид натроек-->
         <Grid Name="SettingsGrid" Grid.Row="1" Visibility="Collapsed">

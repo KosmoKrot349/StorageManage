@@ -33,6 +33,7 @@ namespace StorageManage.SelectionChanged
                     series.StrokeThickness = 1;
                     CategoryAxis axis = new CategoryAxis();
                     MySqlDataReader reader = window.ex.returnResult("select DATE_FORMAT(repairorders.datestart, '%M -%Y'),count(repairorders_malfunctions.recordid)from malfunctions inner join repairorders_malfunctions using(idmalfunctions) inner join repairorders using(idrepairorders) where idmalfunctions=(select idmalfunctions from malfunctions where title='" + window.MalfunctionsCMBX.SelectedItem.ToString() + "') group by DATE_FORMAT(repairorders.datestart, ' %M -%Y')");
+                    if (reader == null) { return; }
                     if (reader.HasRows)
                     {
                         while (reader.Read())
@@ -83,23 +84,30 @@ namespace StorageManage.SelectionChanged
                     window.ex.closeCon();
                     //получение всех дат в таблице
                     reader = window.ex.returnResult("select distinct DATE_FORMAT(datestart, '%m-%Y'),DATE_FORMAT(datestart, '%M-%Y')from  repairorders");
+                    if (reader == null) { return; }
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
                             for (int i = 0; i < series.Length; i++)
                             {
-                               //получение значений всей неисправностей для каждой даты
-                                SqlExecute ex2 = new SqlExecute(window.connectionstring);
-                                MySqlDataReader reader2 = ex2.returnResult("select count(repairorders_malfunctions.recordid)from malfunctions inner join repairorders_malfunctions using(idmalfunctions) inner join repairorders using(idrepairorders) where idmalfunctions=(select idmalfunctions from malfunctions where title='" + series[i].Title + "') and  Month(repairorders.datestart)=" + reader.GetString(0).Split('-')[0]+ " and  Year(repairorders.datestart)=" + reader.GetString(0).Split('-')[1]);
-                                if (reader2.HasRows)
-                                { while (reader2.Read())
+                                //получение значений всей неисправностей для каждой даты
+                                try
+                                {
+                                    SqlExecute ex2 = new SqlExecute(window.connectionstring);
+                                    MySqlDataReader reader2 = ex2.returnResult("select count(repairorders_malfunctions.recordid)from malfunctions inner join repairorders_malfunctions using(idmalfunctions) inner join repairorders using(idrepairorders) where idmalfunctions=(select idmalfunctions from malfunctions where title='" + series[i].Title + "') and  Month(repairorders.datestart)=" + reader.GetString(0).Split('-')[0] + " and  Year(repairorders.datestart)=" + reader.GetString(0).Split('-')[1]);
+                                    if (reader2.HasRows)
                                     {
-                                        series[i].Items.Add(new ColumnItem { Value=reader2.GetInt32(0)});
-                                    
+                                        while (reader2.Read())
+                                        {
+                                            series[i].Items.Add(new ColumnItem { Value = reader2.GetInt32(0) });
+
+                                        }
+
                                     }
-                                            
+                                    ex2.closeCon();
                                 }
+                                catch(MySqlException exception) { MessageBox.Show(exception.Message); return; }
                             }
                             axis.Labels.Add(reader.GetString(1));
                         }
