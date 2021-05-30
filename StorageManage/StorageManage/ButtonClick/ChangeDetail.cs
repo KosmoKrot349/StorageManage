@@ -25,7 +25,7 @@ public ChangeDetail(MainWindow window)
             window.ex.closeCon();
             int i = 0;
             if (window.ChangeDetIsImportant.IsChecked == true) i = 1;
-            window.ex.ExecuteWithoutRedaer("UPDATE details SET `title` ='"+window.ChangeDetTitle.Text+"',`storage` = " + window.ChangeDetStorage.Text + ",`ordered` = 0,`saled` = " + window.ChangeDetSaled.Text + ",`price` = " + window.ChangeDetPrice.Text.Replace(',','.') + ",`isimportant` = "+i+" WHERE `iddetails` = "+window.detailIdForChange);
+            window.ex.ExecuteWithoutRedaer("UPDATE details SET `title` ='"+window.ChangeDetTitle.Text+"',`storage` = " + window.ChangeDetStorage.Text + ",`ordered` = 0,`saled` = " + window.ChangeDetSaled.Text + ",`price` = " + window.ChangeDetPrice.Text.Replace(',','.').Replace("₴", "") + ",`isimportant` = "+i+" WHERE `iddetails` = "+window.detailIdForChange);
             window.hd.HideAll();
             window.DetailsGrid.Visibility = Visibility.Visible;
             if (window.currentUserLogin == "root")

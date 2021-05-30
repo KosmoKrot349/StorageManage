@@ -230,7 +230,7 @@
         </Grid>
 
         <!--грид добавления детали-->
-        <Grid Name="AddDetailGrid" Grid.Row="1" Visibility="Collapsed">
+        <Grid Name="AddDetailGrid" Grid.Row="1" Visibility="Collapsed" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="1*"/>
@@ -253,7 +253,7 @@
             <Label FontSize="25" Content="Важная деталь" Grid.Row="5" Grid.Column="0" />
 
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="AddDetTitle" />
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Name="AddDetPrice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Text="0₴"  Name="AddDetPrice" TextChanged="TextBox_TextChanged"/>
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="AddDetStorage" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="AddDetSaled" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
             <CheckBox  Grid.Row="5" Grid.Column="1" Name="AddDetIsImportant" />
@@ -284,7 +284,7 @@
             <Label FontSize="25" Content="Важная деталь" Grid.Row="5" Grid.Column="0" />
 
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="ChangeDetTitle" />
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" Name="ChangeDetPrice"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="Label_PreviewTextInput" TextChanged="TextBox_TextChanged" Name="ChangeDetPrice"/>
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="3" Grid.Column="1" Name="ChangeDetStorage" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="ChangeDetSaled" PreviewTextInput="AddDetStorage_PreviewTextInput"/>
             <CheckBox  Grid.Row="5" Grid.Column="1" Name="ChangeDetIsImportant" />
@@ -356,7 +356,7 @@
 
             <ComboBox FontSize="14" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" Text="0₴" TextChanged="TextBox_TextChanged" PreviewTextInput="Label_PreviewTextInput" />
             <DatePicker  FontSize="20" Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
 
             <Button FontSize="20" Content="Добавить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="AddOrder" Click="Button_Click"/>
@@ -384,7 +384,7 @@
 
             <Label Grid.Row="1" Grid.Column="1" Name="ChangeOrderDetailTitle"/>
             <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="ChangeOrderQuantity"/>
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="ChangeOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="4" Grid.Column="1" Name="ChangeOrderPrice" TextChanged="TextBox_TextChanged" PreviewTextInput="Label_PreviewTextInput"/>
             <DatePicker FontSize="20"  Grid.Row="3" Grid.Column="1" Name="ChangeOrderDate" />
 
             <Button FontSize="20" Content="Изменить" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeOrder" Click="Button_Click"/>
@@ -800,7 +800,7 @@
                 <ComboBoxItem Content="Выполнен" />
                 <ComboBoxItem Content="Отменен" />
             </ComboBox>
-            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Name="ChangeCostOfDetailsOfRepairOrder" PreviewTextInput="Label_PreviewTextInput" />
+            <TextBox FontSize="20" VerticalContentAlignment="Center" Grid.Row="7" Grid.Column="1" Name="ChangeCostOfDetailsOfRepairOrder" TextChanged="TextBox_TextChanged" PreviewTextInput="Label_PreviewTextInput" />
             <Button FontSize="20" Content="Изменить" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Name="ChangeRepairOrder" Click="Button_Click"/>
         </Grid>
 

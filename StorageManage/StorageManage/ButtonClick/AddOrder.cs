@@ -43,7 +43,7 @@ namespace StorageManage.ButtonClick
                 }
             }
             window.ex.closeCon();
-            window.ex.ExecuteWithoutRedaer("INSERT INTO orders(`iddetails`,`id`,`orderdate`,`quantity`,`orderprice`,`iscompleet`)VALUES("+detid+","+userid+",'"+Convert.ToDateTime(window.AddOrderDate.SelectedDate).Year+"-"+ Convert.ToDateTime(window.AddOrderDate.SelectedDate).Month + "-" + Convert.ToDateTime(window.AddOrderDate.SelectedDate).Day+ "'," + window.AddOrderQuantity.Text + "," + window.AddOrderPrice.Text.Replace(',', '.') + ",0)");
+            window.ex.ExecuteWithoutRedaer("INSERT INTO orders(`iddetails`,`id`,`orderdate`,`quantity`,`orderprice`,`iscompleet`)VALUES("+detid+","+userid+",'"+Convert.ToDateTime(window.AddOrderDate.SelectedDate).Year+"-"+ Convert.ToDateTime(window.AddOrderDate.SelectedDate).Month + "-" + Convert.ToDateTime(window.AddOrderDate.SelectedDate).Day+ "'," + window.AddOrderQuantity.Text + "," + window.AddOrderPrice.Text.Replace(',', '.').Replace("₴", "") + ",0)");
             window.ex.ExecuteWithoutRedaer("update details set ordered=ordered+"+window.AddOrderQuantity.Text+" where iddetails="+detid);
             window.hd.HideAll();
             window.OrdersGrid.Visibility = Visibility.Visible;

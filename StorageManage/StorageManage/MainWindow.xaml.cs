@@ -246,14 +246,21 @@ namespace StorageManage
         //ввод числе только с заяптой
         private void Label_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            TextBox tbne = sender as TextBox;
+            TextBox textBox = sender as TextBox;
             if ((!Char.IsDigit(e.Text, 0)) && (e.Text != ","))
             {
                 e.Handled = true;
             }
             else
-                if ((e.Text == ",") && ((tbne.Text.IndexOf(",") != -1) || (String.IsNullOrEmpty(tbne.Text))))
+                if ((e.Text == ",") && ((textBox.Text.IndexOf(",") != -1) || (String.IsNullOrEmpty(textBox.Text))))
             {  e.Handled = true; }
+            //if (textBox.Text.IndexOf(",") != -1)
+            //{ 
+            //if(textBox.Text.Split(',')[1].Replace("₴","").Length==2) 
+                    
+            //        e.Handled = true;
+            //}
+            
         }
         //ввод простых чисел
         private void AddDetStorage_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -276,6 +283,29 @@ namespace StorageManage
                 case "MalfunctionsCMBX": { actionReactComboBox = new SelectMalfunctionFromStatistic(this); break; }
             }
             actionReactComboBox.SelectionChanged();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            //добавление символа ₴ в конец строки
+            if (String.IsNullOrEmpty(textBox.Text) == false)
+            {
+                int charCount = 0;
+
+                for (int i = 0; i < textBox.Text.Length; i++)
+                {
+                    if (textBox.Text[i] == '₴') charCount++;
+                }
+                if (charCount > 1)
+                {
+                    while (textBox.Text.IndexOf("₴") != -1)
+                    {
+                        textBox.Text = textBox.Text.Remove(textBox.Text.IndexOf("₴"), 1);return;
+                    }
+                }
+                if (textBox.Text[textBox.Text.Length - 1] != '₴') { textBox.Text += "₴";};
+            }
         }
     }
 }

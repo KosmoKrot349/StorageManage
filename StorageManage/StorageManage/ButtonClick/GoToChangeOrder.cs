@@ -29,7 +29,7 @@ namespace StorageManage.ButtonClick
             window.orderQuantity =Convert.ToInt32(arr[5]);
             window.ChangeOrderDetailTitle.Content = arr[1].ToString();
             window.ChangeOrderDate.SelectedDate = Convert.ToDateTime(arr[3]);
-            window.ChangeOrderPrice.Text = arr[4].ToString().Replace('.', ',');
+            window.ChangeOrderPrice.Text = arr[4].ToString().Replace('.', ',')+"₴";
             window.ChangeOrderQuantity.Text = arr[5].ToString();
             window.hd.HideAll();
             window.ChangeOrderGrid.Visibility = Visibility.Visible;

@@ -30,7 +30,7 @@ namespace StorageManage.ButtonClick
             window.ChangeDetTitle.Text = arr[1].ToString() ;
             window.ChangeDetStorage.Text = arr[2].ToString();
             window.ChangeDetSaled.Text = arr[4].ToString();
-            window.ChangeDetPrice.Text = arr[5].ToString().Replace('.',',');
+            window.ChangeDetPrice.Text = arr[5].ToString().Replace('.',',')+ "₴";
             if (arr[6].ToString() == "Важная") window.ChangeDetIsImportant.IsChecked = true;else window.ChangeDetIsImportant.IsChecked = false;
             window.hd.HideAll();
             window.ChangeDetailGrid.Visibility = Visibility.Visible;

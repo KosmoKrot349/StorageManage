@@ -58,7 +58,7 @@ namespace StorageManage.ButtonClick
         
            
             window.AddOrderDate.SelectedDate = DateTime.Now;
-            window.AddOrderPrice.Text ="0";
+            window.AddOrderPrice.Text = "0₴";
             window.AddOrderQuantity.Text = "0";
             window.hd.HideAll();
             window.AddOrderGrid.Visibility = Visibility.Visible;

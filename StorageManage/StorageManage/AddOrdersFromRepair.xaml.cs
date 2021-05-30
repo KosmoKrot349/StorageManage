@@ -51,7 +51,28 @@ namespace StorageManage
                 e.Handled = true;
             }
         }
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            //добавление символа ₴ в конец строки
+            if (String.IsNullOrEmpty(textBox.Text) == false)
+            {
+                int charCount = 0;
 
+                for (int i = 0; i < textBox.Text.Length; i++)
+                {
+                    if (textBox.Text[i] == '₴') charCount++;
+                }
+                if (charCount > 1)
+                {
+                    while (textBox.Text.IndexOf("₴") != -1)
+                    {
+                        textBox.Text = textBox.Text.Remove(textBox.Text.IndexOf("₴"), 1); return;
+                    }
+                }
+                if (textBox.Text[textBox.Text.Length - 1] != '₴') { textBox.Text += "₴"; };
+            }
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ex = new SqlExecute(connectionString);
@@ -66,6 +87,7 @@ namespace StorageManage
 
             }
             ex.closeCon();
+            AddOrderPrice.Text = "0₴";
         }
        
 
@@ -93,7 +115,7 @@ namespace StorageManage
                 }
             }
             ex.closeCon();
-            ex.ExecuteWithoutRedaer("INSERT INTO orders(`iddetails`,`id`,`orderdate`,`quantity`,`orderprice`,`iscompleet`)VALUES(" + detid + "," + userid + ",'" + Convert.ToDateTime(AddOrderDate.SelectedDate).Year + "-" + Convert.ToDateTime(AddOrderDate.SelectedDate).Month + "-" + Convert.ToDateTime(AddOrderDate.SelectedDate).Day + "'," +AddOrderQuantity.Text + "," + AddOrderPrice.Text.Replace(',', '.') + ",0)");
+            ex.ExecuteWithoutRedaer("INSERT INTO orders(`iddetails`,`id`,`orderdate`,`quantity`,`orderprice`,`iscompleet`)VALUES(" + detid + "," + userid + ",'" + Convert.ToDateTime(AddOrderDate.SelectedDate).Year + "-" + Convert.ToDateTime(AddOrderDate.SelectedDate).Month + "-" + Convert.ToDateTime(AddOrderDate.SelectedDate).Day + "'," +AddOrderQuantity.Text + "," + AddOrderPrice.Text.Replace(',', '.').Replace("₴","") + ",0)");
             ex.ExecuteWithoutRedaer("update details set ordered=ordered+" + AddOrderQuantity.Text + " where iddetails=" + detid);
             if (selectedId < missingDetails.Count - 1)
             {

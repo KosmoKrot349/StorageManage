@@ -43,7 +43,7 @@ namespace StorageManage.ButtonClick
                 case "Отменен": {  selectedid = 5; break; }
             }
             window.ChangeStatOfRepairOrder.SelectedIndex = selectedid;
-            window.ChangeCostOfDetailsOfRepairOrder.Text = arr[7].ToString().Replace('.',',');
+            window.ChangeCostOfDetailsOfRepairOrder.Text = arr[7].ToString().Replace('.',',')+ "₴";
 
             window.hd.HideAll();
             window.ChangeRepairOrderGrid.Visibility = Visibility.Visible;

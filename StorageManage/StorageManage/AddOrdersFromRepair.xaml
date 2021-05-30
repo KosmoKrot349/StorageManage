@@ -27,7 +27,7 @@
         <Label FontSize="25" Content="Сумма" Grid.Row="4" Grid.Column="0" />
 
         <TextBlock FontSize="20" Grid.Row="1" Grid.Column="1" Name="AddOrderDetailTitle"/>
-        <TextBox FontSize="20"  VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" Name="AddOrderQuantity"/>
+        <TextBox FontSize="20"  VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" PreviewTextInput="AddDetStorage_PreviewTextInput" TextChanged="TextBox_TextChanged" Name="AddOrderQuantity"/>
         <TextBox FontSize="20"  VerticalContentAlignment="Center"  Grid.Row="4" Grid.Column="1" Name="AddOrderPrice" PreviewTextInput="Label_PreviewTextInput"/>
         <DatePicker FontSize="20"  Grid.Row="3" Grid.Column="1" Name="AddOrderDate" />
 

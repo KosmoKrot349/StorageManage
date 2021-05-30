@@ -26,7 +26,7 @@ namespace StorageManage.ButtonClick
             window.ex.closeCon();
             int i = 0;
             if (window.AddDetIsImportant.IsChecked == true) i = 1;
-            window.ex.ExecuteWithoutRedaer("INSERT INTO details (`title`, `storage`, `ordered`, `saled`,`price`,`isimportant`) VALUES('"+window.AddDetTitle.Text+ "'," + window.AddDetStorage.Text + ",0,"+window.AddDetSaled.Text+","+window.AddDetPrice.Text.Replace(',','.')+","+i+")");
+            window.ex.ExecuteWithoutRedaer("INSERT INTO details (`title`, `storage`, `ordered`, `saled`,`price`,`isimportant`) VALUES('"+window.AddDetTitle.Text+ "'," + window.AddDetStorage.Text + ",0,"+window.AddDetSaled.Text+","+window.AddDetPrice.Text.Replace(',','.').Replace("₴","") +","+i+")");
             window.hd.HideAll();
             window.DetailsGrid.Visibility = Visibility.Visible;
             if (window.currentUserLogin == "root")

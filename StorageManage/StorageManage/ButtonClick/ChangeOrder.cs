@@ -32,7 +32,7 @@ public ChangeOrder(MainWindow window)
                 }
             }
             window.ex.closeCon();
-            window.ex.ExecuteWithoutRedaer("update orders set orderdate='" + Convert.ToDateTime(window.ChangeOrderDate.SelectedDate).Year + "-" + Convert.ToDateTime(window.ChangeOrderDate.SelectedDate).Month + "-" + Convert.ToDateTime(window.ChangeOrderDate.SelectedDate).Day + "',quantity="+window.ChangeOrderQuantity.Text+",orderprice="+window.ChangeOrderPrice.Text.Replace(',','.')+" where idorders="+window.orderIdForChange);
+            window.ex.ExecuteWithoutRedaer("update orders set orderdate='" + Convert.ToDateTime(window.ChangeOrderDate.SelectedDate).Year + "-" + Convert.ToDateTime(window.ChangeOrderDate.SelectedDate).Month + "-" + Convert.ToDateTime(window.ChangeOrderDate.SelectedDate).Day + "',quantity="+window.ChangeOrderQuantity.Text+",orderprice="+window.ChangeOrderPrice.Text.Replace(',','.').Replace("₴", "") + " where idorders="+window.orderIdForChange);
             window.ex.ExecuteWithoutRedaer("update details set ordered=ordered-"+window.orderQuantity+"+" + window.ChangeOrderQuantity.Text + " where iddetails=" + detid);
             window.hd.HideAll();
             window.OrdersGrid.Visibility = Visibility.Visible;

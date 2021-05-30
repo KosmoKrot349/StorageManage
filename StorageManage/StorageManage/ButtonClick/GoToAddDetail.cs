@@ -21,7 +21,7 @@ namespace StorageManage.ButtonClick
             window.AddDetTitle.Text = "";
             window.AddDetStorage.Text = "0";
             window.AddDetSaled.Text = "0";
-            window.AddDetPrice.Text = "0";
+            window.AddDetPrice.Text = "0₴";
             window.AddDetIsImportant.IsChecked = false;
             window.hd.HideAll();
             window.AddDetailGrid.Visibility = Visibility.Visible;

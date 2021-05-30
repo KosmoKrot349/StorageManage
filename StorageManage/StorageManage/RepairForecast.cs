@@ -11,7 +11,7 @@ namespace StorageManage
     {
         public static string Forecast(string titlemalfunction,string connectionString)
         {
-            double d = 0;
+            //double d = 0;
             //получаю месяцы
             SqlExecute ex = new SqlExecute(connectionString);
             MySqlDataReader reader = ex.returnResult("SELECT DISTINCT DATE_FORMAT(repairorders.datestart, '%m-%Y') FROM repairorders_malfunctions inner join repairorders using (idrepairorders) ");
